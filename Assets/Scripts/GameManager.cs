@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
 
     public void BeginPlay() {
         player.enabled = true;
-        ballSpawner.enabled = true;
         namingPanel.SetActive(false);
     }
 
@@ -64,9 +63,10 @@ public class GameManager : MonoBehaviour
         funText.text = ballSpawner.timeSinceLastSpawn.ToString();
 
         if (!hasStarted) {
-            if (Input.GetKeyDown(KeyCode.Space)) {
+            if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
                 music.Play();
                 ballSpawner.timeSinceLastSpawn = 1.6875f;
+                ballSpawner.enabled = true;
                 hasStarted = true;
             }
         }
