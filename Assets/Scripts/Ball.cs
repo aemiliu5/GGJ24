@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
 {
     public float ballForceHeight;
     public BallType ballType;
-
+    public int points;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     

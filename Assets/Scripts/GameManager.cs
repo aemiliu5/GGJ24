@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public int score;
+
     public int funFactor; // 3 - ecstatic, 2 - happy, 1 - neutral, 0 - disappointed - <0 dies
     public int combo;
 
@@ -13,7 +14,9 @@ public class GameManager : MonoBehaviour
     public Queue<GameObject> balls = new Queue<GameObject>();
 
     public static GameManager instance;
-    
+
+    public Score scoretext;
+
     private void Start()
     {
         for(int i = 0; i < ballPrefabParent.transform.childCount; i++) {

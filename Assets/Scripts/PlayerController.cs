@@ -30,21 +30,25 @@ public class PlayerController : MonoBehaviour
         {
             switch (currentBall.ballType)
             {
-                case BallType.AutoRicochet: 
-                    currentBall.ZeroVelocity();
-                    currentBall.ApplyBallForce();
+                case BallType.AutoRicochet:
+                    HittingBall();
                     break;
                 
                 case BallType.ManualRicochet:
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        currentBall.ZeroVelocity();
-                        currentBall.ApplyBallForce();
+                        HittingBall();
                     }
                     
                     break;
             }
         }
+    }
+
+    public void HittingBall() {
+        currentBall.ZeroVelocity();
+        currentBall.ApplyBallForce();
+        GameManager.instance.scoretext.IncreaseScoreBy(currentBall.points);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
