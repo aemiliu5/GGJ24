@@ -8,22 +8,33 @@ public class Ball : MonoBehaviour
     public float ballForceHeight;
     public BallType ballType;
     public int points;
+    public bool Initialized = false;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-    
-    private void Start()
+    private BallSpawner spawner;
+
+    private void OnEnable()
     {
-        sr = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        if (!Initialized)
+        {
+            sr = GetComponent<SpriteRenderer>();
+            rb = GetComponent<Rigidbody2D>();
+            spawner = FindObjectOfType<BallSpawner>();
+            Initialized = true;
+        }
         
         DetermineBallType();
         ApplyBallForce();
+        StartCoroutine(EnableCollider());
     }
 
     private void Update()
     {
-        if (transform.position.y < -8f) {
-            FindObjectOfType<GameManager>().balls.Enqueue(this.gameObject);
+        if (transform.position.y < -8f) 
+        {
+            spawner.balls.Enqueue(this.gameObject);
+            GameManager.instance.combo = 0;
+            GetComponent<Collider2D>().enabled = false;
             gameObject.SetActive(false); 
         }
     }
@@ -31,7 +42,7 @@ public class Ball : MonoBehaviour
     public void ApplyBallForce()
     {
         Vector3 force = new Vector3(0, ballForceHeight, 0);
-        rb.AddForce(force, ForceMode2D.Impulse);
+        rb.AddRelativeForce(force, ForceMode2D.Impulse);
     }
 
     public void ZeroVelocity()
@@ -43,6 +54,7 @@ public class Ball : MonoBehaviour
     {
         switch (ballType)
         {
+
             case BallType.AutoRicochet:
                 sr.color = Color.blue;
                 break;
@@ -59,13 +71,22 @@ public class Ball : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+
+    
+    // Collider starts out disabled so it doesn't count in the score
+    // We enable it later to compensate.
+    private IEnumerator EnableCollider()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Collider2D>().enabled = true;
+    }
 }
 
 public enum BallType
 {
     AutoRicochet,
     ManualRicochet,
-    Harmful,
     Holdable,
+    Harmful
 }
 

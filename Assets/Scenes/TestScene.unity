@@ -136,6 +136,10 @@ PrefabInstance:
       value: Ball (39)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -203,6 +207,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -279,6 +287,10 @@ PrefabInstance:
       value: Ball (16)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -346,6 +358,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -509,6 +525,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -739,6 +759,10 @@ PrefabInstance:
       value: Ball (1)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -818,6 +842,10 @@ PrefabInstance:
       value: Ball (10)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -885,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -961,6 +993,10 @@ PrefabInstance:
       value: Ball (11)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1028,6 +1064,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -1102,6 +1142,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -1183,6 +1227,10 @@ PrefabInstance:
       value: Ball (6)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1255,6 +1303,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -1392,6 +1444,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -1702,6 +1758,10 @@ PrefabInstance:
       value: Ball (30)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1784,6 +1844,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -1959,6 +2023,10 @@ PrefabInstance:
       value: Ball (29)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2028,6 +2096,10 @@ PrefabInstance:
       value: Ball (38)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2095,6 +2167,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -2169,6 +2245,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -2247,6 +2327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 869824474}
   - component: {fileID: 869824473}
+  - component: {fileID: 869824475}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2268,8 +2349,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   funFactor: 0
   combo: 0
-  ballPrefabParent: {fileID: 1982133331}
+  time: 0
   scoretext: {fileID: 1567558746}
+  scoreMultiplier: 0
+  funText: {fileID: 1615310687}
 --- !u!4 &869824474
 Transform:
   m_ObjectHideFlags: 0
@@ -2285,6 +2368,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &869824475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869824472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7062b6c4f1f46cd43957b0bda504dedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefabParent: {fileID: 1982133331}
+  timeBetween: 1
+  timeSinceLastSpawn: 0
+  activeBalls: 0
+  ballAngle: 10
 --- !u!1001 &945269114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2296,6 +2396,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -2372,6 +2476,10 @@ PrefabInstance:
       value: Ball (45)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2444,6 +2552,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -2525,6 +2637,10 @@ PrefabInstance:
       value: Ball (31)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2597,6 +2713,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -2678,6 +2798,10 @@ PrefabInstance:
       value: Ball (14)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2757,6 +2881,10 @@ PrefabInstance:
       value: Ball (13)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2829,6 +2957,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -2925,6 +3057,10 @@ PrefabInstance:
       value: Ball (9)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2999,6 +3135,10 @@ PrefabInstance:
       value: Ball (18)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3066,6 +3206,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -3288,6 +3432,10 @@ PrefabInstance:
       value: Ball (22)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3360,6 +3508,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -3571,6 +3723,10 @@ PrefabInstance:
       value: Ball (4)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3638,6 +3794,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -3709,6 +3869,10 @@ PrefabInstance:
       value: Ball (8)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3776,6 +3940,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -3847,6 +4015,10 @@ PrefabInstance:
       value: Ball (35)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3916,6 +4088,10 @@ PrefabInstance:
       value: Ball (2)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -3983,6 +4159,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -4069,6 +4249,10 @@ PrefabInstance:
       value: Ball (41)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4136,6 +4320,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -4210,6 +4398,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -4294,6 +4486,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -4446,6 +4642,10 @@ PrefabInstance:
       value: Ball (42)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4513,6 +4713,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -4668,6 +4872,10 @@ PrefabInstance:
       value: Ball (25)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4742,6 +4950,10 @@ PrefabInstance:
       value: Ball (5)
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -4809,6 +5021,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive
@@ -5026,6 +5242,10 @@ PrefabInstance:
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_IsActive

@@ -32,12 +32,16 @@ public class PlayerController : MonoBehaviour
             {
                 case BallType.AutoRicochet:
                     HittingBall();
+                    GameManager.instance.AddCombo();
+                    ballInTrigger = false;
                     break;
                 
                 case BallType.ManualRicochet:
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
+                        GameManager.instance.AddCombo();
                         HittingBall();
+                        ballInTrigger = false;
                     }
                     
                     break;
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
         currentBall.ZeroVelocity();
         currentBall.ApplyBallForce();
         GameManager.instance.scoretext.IncreaseScoreBy(currentBall.points);
+        ballInTrigger = false;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
