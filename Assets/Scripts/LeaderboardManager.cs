@@ -6,7 +6,6 @@ public class LeaderboardManager : MonoBehaviour {
     [SerializeField] private GameObject leaderboardEntry;
     [SerializeField] private Transform leaderboardEntryHolder;
     private List<PlayerData> _playerData = new List<PlayerData>();
-
     private SaveManager _saveManager;
     private bool _initialized;
     private void OnEnable() {
@@ -17,7 +16,9 @@ public class LeaderboardManager : MonoBehaviour {
                 _playerData = (List<PlayerData>)savedData;
             _initialized = true;
         }
-        
+
+        _playerData.Add(GameManager.instance.player.playerData);
+
         if (_playerData == null) return;
         //Display leaderboard entries
         DisplayEntries();

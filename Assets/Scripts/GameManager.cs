@@ -9,9 +9,12 @@ public class GameManager : MonoBehaviour
 {
     public int funFactor; // 3 - ecstatic, 2 - happy, 1 - neutral, 0 - disappointed - <0 dies
     public int combo;
-
+    private int loseCombo = 0;
     public float time;
-    
+    public PlayerController player;
+    public BallSpawner ballSpawner;
+    public GameObject namingPanel;
+    public GameObject leaderboard;
     public static GameManager instance;
 
     public Score scoretext;
@@ -25,11 +28,21 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    public void BeginPlay() {
+        player.enabled = true;
+        ballSpawner.enabled = true;
+        namingPanel.SetActive(false);
+    }
+
+    public void ReturnToMainMenu() {
+        SceneManager.LoadScene(0);
+    }
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && player.enabled)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         time += Time.deltaTime;
@@ -55,16 +68,20 @@ public class GameManager : MonoBehaviour
     public void AddCombo()
     {
         combo++;
+        loseCombo = 0;
     }
 
     public void LoseCombo()
     {
         combo = 0;
-        funFactor--;
+        loseCombo++;
+        if(loseCombo >= 10) { funFactor--; }
     }
 
     public void Lose()
     {
-        Debug.Log("You lost.");
+        player.enabled = false;
+        ballSpawner.enabled = false;
+        leaderboard.SetActive(true);
     }
 }
