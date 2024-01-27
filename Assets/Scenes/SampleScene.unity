@@ -2929,7 +2929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefabParent: {fileID: 1883724935}
-  timeBetween: 50
+  timeBetween: 20
   timeSinceLastSpawn: 0
   activeBalls: 0
   ballAngle: 10
@@ -6600,6 +6600,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4845578413776974413, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
   m_PrefabInstance: {fileID: 1921050641}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1921156994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921156995}
+  m_Layer: 0
+  m_Name: Trigger Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1921156995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921156994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.762, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2134549822}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1973170592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7316,6 +7347,7 @@ Transform:
   - {fileID: 1569437668}
   - {fileID: 502136634}
   - {fileID: 163656801}
+  - {fileID: 1921156995}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7341,11 +7373,13 @@ MonoBehaviour:
     funRating: 0
     timePlayed: 0
   currentBall: {fileID: 0}
+  holdingBallObject: {fileID: 0}
   ballInTrigger: 0
+  triggerPoint: {fileID: 1921156995}
   handBallPlace: {fileID: 163656801}
   overheadBallPlace: {fileID: 1569437668}
   feetBallPlace: {fileID: 502136634}
-  holdGap: 10
+  holdGap: 5
 --- !u!61 &2134549824
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7399,10 +7433,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 108410837290044091, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_Name
       value: Ball

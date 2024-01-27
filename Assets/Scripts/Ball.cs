@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
-
 public class Ball : MonoBehaviour {
     public enum HoldableBallState { Neutral, Overhead, Feet }
     public float ballForceHeight;
@@ -10,15 +9,19 @@ public class Ball : MonoBehaviour {
     //------ Holdable ball configs ----------------------//
     public HoldableBallState HoldableState { get; set; }
     public bool chosenBallState; 
-    //------ Holdable ball configs ----------------------//
+    //--------------------------------------------------//
+    //------ Ricochet ball configs ----------------------//
+    [SerializeField] private GameObject ballOutline;
+    private bool _activateRicochet;
+    //--------------------------------------------------//
+
     private int points;
     private int ballPoints;
     public bool Initialized = false;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private BallSpawner spawner;
-
-    private Transform _parent;
+    private static Transform PlayerCenterPoint => GameObject.Find("Player").GetComponent<PlayerController>().CenterPoint;
 
     private void OnEnable()
     {
@@ -27,12 +30,13 @@ public class Ball : MonoBehaviour {
             sr = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             spawner = FindObjectOfType<BallSpawner>();
-            _parent = transform.parent;
             Initialized = true;
         }
         
+        ballOutline.SetActive(false);
         chosenBallState = false;
         rb.isKinematic = false;
+        _activateRicochet = false;
         
         DetermineBallType();
         ApplyBallForce();
@@ -42,6 +46,22 @@ public class Ball : MonoBehaviour {
     private void Update() {
         if (transform.position.y < -8f) {
              DespawnBall();
+        }
+
+        if (ballType == BallType.ManualRicochet) {
+            if(ballOutline)
+                ballOutline.SetActive(true);
+            //Check if the ball is at a certain distance from the player and then enable the ricochet
+            //Resize the ball outline -> get the normalized value between the current y and player trigger y
+            // Like so : float normalized = currentY / playerCenterPoint.y
+            // Use the normalized value to remap the size of the ball
+            if (transform.position.y > 4) {
+                _activateRicochet = true;
+                //ballOutline.transform.localScale = Vector3.one * (2 - (normalizedValue));
+            }
+            if (_activateRicochet) {
+                float distance = Vector2.Distance(transform.position, PlayerCenterPoint.position);
+            }
         }
     }
 

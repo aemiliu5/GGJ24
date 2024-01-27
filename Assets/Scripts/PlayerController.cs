@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour {
     public float speed;
@@ -7,12 +8,17 @@ public class PlayerController : MonoBehaviour {
     public float leftBound, rightBound;
     public PlayerData playerData;
     public Ball currentBall;
+    [FormerlySerializedAs("holdingBall")] public Ball holdingBallObject;
     public bool ballInTrigger;
 
+    [SerializeField] private Transform triggerPoint;
     [SerializeField] private Transform handBallPlace;
     [SerializeField] private Transform overheadBallPlace;
     [SerializeField] private Transform feetBallPlace;
     [SerializeField] private float holdGap = 5.0f;
+
+    public Transform CenterPoint => triggerPoint;
+    
     private bool _holdingBall;
     private float _yPos = -5.5f;
     private float _currentHoldTime;
@@ -20,16 +26,16 @@ public class PlayerController : MonoBehaviour {
     private Transform _holdableBallHolder;
 
     private void Update() {
-        float currentSpeed = currentBall != null && currentBall.HoldableState == Ball.HoldableBallState.Overhead ? decreasedSpeed : speed;
+        float currentSpeed = holdingBallObject != null && holdingBallObject.HoldableState == Ball.HoldableBallState.Overhead ? decreasedSpeed : speed;
         // ----- Movement -----
         Vector3 movement = new Vector3(transform.position.x + GetInput().x * (currentSpeed * Time.deltaTime), _yPos, 0.0f);
         movement.x = Mathf.Clamp(movement.x, leftBound, rightBound);
         transform.position = movement;
 
-        if (_holdingBall) {
+        if (_holdingBall && holdingBallObject.ballType == BallType.Holdable) {
             HandleHoldingBall();
-            if(currentBall != null)
-                currentBall.transform.position = Vector3.Lerp(currentBall.transform.position, _holdableBallHolder.position, 20 * Time.deltaTime);
+            if(holdingBallObject != null)
+                holdingBallObject.transform.position = Vector3.Lerp(holdingBallObject.transform.position, _holdableBallHolder.position, 20 * Time.deltaTime);
         }
 
         // ----- Handle Balls -----
@@ -39,7 +45,6 @@ public class PlayerController : MonoBehaviour {
             case BallType.AutoRicochet:
                 HittingBall();
                 break;
-                
             case BallType.ManualRicochet:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
@@ -47,9 +52,10 @@ public class PlayerController : MonoBehaviour {
                 }
                 break;
             case BallType.Holdable:
+                if (_holdingBall) return;
                 if (Input.GetKeyDown(KeyCode.Space)) {
                     _holdingBall = true;
-                    currentBall.SleepRigidbody();
+                    holdingBallObject.SleepRigidbody();
                     _holdableBallHolder = handBallPlace;
                 }
                 break;
@@ -63,30 +69,29 @@ public class PlayerController : MonoBehaviour {
     private void HandleHoldingBall() {
         if (_currentHoldTime >= 5) {
             //Handle exit holdable state
-            RewardForHoldableState();
+            RewardForHoldableState(true);
             ResetHoldableState();
         }
         else {
             if (Input.GetKey(KeyCode.Space)) {
-                if (!currentBall.chosenBallState) {
+                if (!holdingBallObject.chosenBallState) {
                     if (Input.GetKeyDown(KeyCode.W)) {
-                        currentBall.HoldableState = Ball.HoldableBallState.Overhead;
+                        holdingBallObject.HoldableState = Ball.HoldableBallState.Overhead;
                         _holdableBallHolder = overheadBallPlace;
-                        currentBall.chosenBallState = true;
+                        holdingBallObject.chosenBallState = true;
                     }
 
                     if (Input.GetKeyDown(KeyCode.S)) {
-                        currentBall.HoldableState = Ball.HoldableBallState.Feet;
+                        holdingBallObject.HoldableState = Ball.HoldableBallState.Feet;
                         _holdableBallHolder = feetBallPlace;
-                        currentBall.chosenBallState = true;
+                        holdingBallObject.chosenBallState = true;
                         _yPos = -5.0f;
                     }
                 }
             }
-            else if (Input.GetKeyUp(KeyCode.Space))
-            {
+            else if (Input.GetKeyUp(KeyCode.Space)) {
                 //Handle leave
-                RewardForHoldableState();
+                RewardForHoldableState(false);
                 ResetHoldableState();
             }
         }
@@ -95,14 +100,24 @@ public class PlayerController : MonoBehaviour {
         _currentHoldTime = Mathf.Clamp(_currentHoldTime, 0, holdGap);
     }
 
-    private void RewardForHoldableState() {
+    private void RewardForHoldableState(bool fullHold) {
         //_currentHoldTimer * base ball score -> Round to int
-        switch (currentBall.HoldableState) {
+        int pointsToGive = 8;
+        int finalPoints = 0;
+        switch (holdingBallObject.HoldableState) {
             case Ball.HoldableBallState.Neutral:
+                 finalPoints = fullHold ?  Mathf.RoundToInt((pointsToGive * 5) + ((pointsToGive * 5) / 3))  : Mathf.RoundToInt(pointsToGive * _currentHoldTime);
+                GameManager.instance.scoretext.IncreaseScoreBy(finalPoints);
                 break;
             case Ball.HoldableBallState.Overhead:
+                pointsToGive += 1;
+                finalPoints = fullHold ?  Mathf.RoundToInt((pointsToGive * 5) + ((pointsToGive * 5) / 3))  : Mathf.RoundToInt(pointsToGive * _currentHoldTime);
+                GameManager.instance.scoretext.IncreaseScoreBy(finalPoints);
                 break;
             case Ball.HoldableBallState.Feet:
+                pointsToGive += 1;
+                finalPoints = fullHold ?  Mathf.RoundToInt((pointsToGive * 5) + ((pointsToGive * 5) / 3))  : Mathf.RoundToInt(pointsToGive * _currentHoldTime);
+                GameManager.instance.scoretext.IncreaseScoreBy(finalPoints);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -110,12 +125,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void ResetHoldableState() {
-        currentBall.FadeBall();
+        holdingBallObject.FadeBall();
         _currentHoldTime = 0.0f;
         ballInTrigger = false;
         _holdingBall = false;
         _yPos = -5.5f;
-        currentBall = null;
     }
 
     private void HittingBall() {
@@ -130,6 +144,10 @@ public class PlayerController : MonoBehaviour {
     {
         ballInTrigger = true;
         currentBall = col.gameObject.GetComponent<Ball>();
+        
+        if (_holdingBall) return;
+        if (currentBall.ballType == BallType.Holdable)
+            holdingBallObject = col.gameObject.GetComponent<Ball>();
     }
 
     private void OnTriggerExit2D(Collider2D col) {
