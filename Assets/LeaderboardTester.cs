@@ -3,7 +3,7 @@ using UnityEngine;
 public class LeaderboardTester : MonoBehaviour {
     [SerializeField] private LeaderboardManager leaderboardManager;
     [SerializeField] private GameObject leaderboardCanvas;
-    private string _name = "";
+    private string _name = "Player Name";
     private int _entryCount = 0;
     private int _playerScore = 0;
     private float _timePlayed = 0.0f;

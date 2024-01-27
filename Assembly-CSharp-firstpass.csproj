@@ -60,35 +60,35 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.4f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleUI.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleAudio.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleSprite.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleUtils.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModulePhysics.cs" />
-    <Compile Include="Assets\Plugins\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\Plugins\DOTween\DOTween.XML" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\DOTween.XML" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\Plugins\DOTween\DOTween.dll" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Plugins\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\DOTween.dll" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\Plugins\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\Plugins\DOTween\readme.txt" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Plugins\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Plugins\Demigiant\DOTween\readme.txt" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Plugins\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\Plugins\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -433,7 +433,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DOTween">
-      <HintPath>Assets\Plugins\DOTween\DOTween.dll</HintPath>
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">

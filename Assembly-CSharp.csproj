@@ -61,9 +61,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ball.cs" />
+    <Compile Include="Assets\Scripts\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\SaveKeywords.cs" />
+    <Compile Include="Assets\LeaderboardTester.cs" />
+    <Compile Include="Assets\Scripts\SaveManager.cs" />
+    <Compile Include="Assets\Scripts\LeaderboardManager.cs" />
+    <Compile Include="Assets\Scripts\FunFactor.cs" />
+    <Compile Include="Assets\Scripts\SaveJson.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\BallPulling.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\LeaderboardEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -403,7 +410,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DOTween">
-      <HintPath>Assets\Plugins\DOTween\DOTween.dll</HintPath>
+      <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Android.Types">

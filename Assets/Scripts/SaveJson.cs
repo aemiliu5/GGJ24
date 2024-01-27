@@ -29,7 +29,6 @@ public class SaveJson
         string saveFileText = sr.ReadToEnd();
 
         if (string.IsNullOrEmpty(saveFileText)) {
-            Debug.LogWarning("SAVE FILE IS EMPTY");
             return;
         }
         
