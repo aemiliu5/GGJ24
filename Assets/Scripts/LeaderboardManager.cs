@@ -6,20 +6,19 @@ public class LeaderboardManager : MonoBehaviour {
     [SerializeField] private GameObject leaderboardEntry;
     [SerializeField] private Transform leaderboardEntryHolder;
     private List<PlayerData> _playerData = new List<PlayerData>();
-
-    private bool _hasEntries;
+    private SaveManager _saveManager;
     private bool _initialized;
-    
     private void OnEnable() {
         if (!_initialized) {
+            _saveManager = SaveManager.instance;
             var savedData = SaveManager.instance.GetData(SaveKeywords.PlayerDataKey);
             if (savedData != null)
                 _playerData = (List<PlayerData>)savedData;
-            
-            _hasEntries = _playerData.Count > 0;
             _initialized = true;
         }
-        
+
+        _playerData.Add(GameManager.instance.player.playerData);
+
         if (_playerData == null) return;
         //Display leaderboard entries
         DisplayEntries();
@@ -49,6 +48,4 @@ public class LeaderboardManager : MonoBehaviour {
         _playerData.Add(leaderboardEntry);
         SaveManager.instance.SaveData(SaveKeywords.PlayerDataKey, _playerData);
     }
-
-    public bool HasEntries() => _hasEntries;
 }

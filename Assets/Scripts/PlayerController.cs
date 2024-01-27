@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
     public float leftBound, rightBound;
-
+    public PlayerData playerData;
     public Ball currentBall;
     public bool ballInTrigger;
     
@@ -32,18 +32,13 @@ public class PlayerController : MonoBehaviour
             {
                 case BallType.AutoRicochet:
                     HittingBall();
-                    GameManager.instance.AddCombo();
-                    ballInTrigger = false;
                     break;
                 
                 case BallType.ManualRicochet:
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        GameManager.instance.AddCombo();
                         HittingBall();
-                        ballInTrigger = false;
                     }
-                    
                     break;
             }
         }
@@ -53,6 +48,7 @@ public class PlayerController : MonoBehaviour
         currentBall.ZeroVelocity();
         currentBall.ApplyBallForce();
         GameManager.instance.scoretext.IncreaseScoreBy(currentBall.GetBallPoint());
+        GameManager.instance.AddCombo();
         ballInTrigger = false;
     }
 
@@ -66,6 +62,10 @@ public class PlayerController : MonoBehaviour
     {
         ballInTrigger = false;
         currentBall = null;
+    }
+
+    public void PlayerNaming(string name) {
+        playerData.playerName = name;
     }
 }
 

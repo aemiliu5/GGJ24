@@ -10,7 +10,7 @@ public class LeaderboardTester : MonoBehaviour {
     private bool _leaderboardEnabled = false;
     // Update is called once per frame
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.A)) {
+        if (Input.GetKeyDown(KeyCode.K)) {
             CreateNewEntry();
         }
 
