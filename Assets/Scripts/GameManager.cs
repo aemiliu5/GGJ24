@@ -18,11 +18,18 @@ public class GameManager : MonoBehaviour
     public int scoreMultiplier;
 
     public TextMeshProUGUI funText;
+    public TextMeshProUGUI startText;
+
+    public BallSpawner ballSpawner;
+    public AudioSource music;
+
+    public bool hasStarted;
 
 
     private void Start()
     {
         instance = this;
+        ballSpawner = FindObjectOfType<BallSpawner>();
     }
 
     private void Update()
@@ -32,7 +39,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        time += Time.deltaTime;
+        if (hasStarted)
+        {
+            time += Time.deltaTime;
+            startText.enabled = false;
+        }
+
 
         if (funFactor < 0)
         {
@@ -41,7 +53,17 @@ public class GameManager : MonoBehaviour
 
         ManageCombo();
 
-        funText.text = combo.ToString();
+        funText.text = ballSpawner.timeSinceLastSpawn.ToString();
+
+        if (!hasStarted)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                music.Play();
+                ballSpawner.timeSinceLastSpawn = 1.6875f;
+                hasStarted = true;
+            }
+        }
     }
 
     public void ManageCombo()
@@ -59,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseCombo()
     {
-        combo = 0;
+        combo = 1;
         funFactor--;
     }
 

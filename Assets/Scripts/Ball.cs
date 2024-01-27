@@ -34,7 +34,7 @@ public class Ball : MonoBehaviour
         if (transform.position.y < -8f) 
         {
             spawner.balls.Enqueue(this.gameObject);
-            GameManager.instance.combo = 0;
+            GameManager.instance.LoseCombo();
             GetComponent<Collider2D>().enabled = false;
             gameObject.SetActive(false); 
         }
