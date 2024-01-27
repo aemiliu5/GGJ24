@@ -23,6 +23,8 @@ public class Ball : MonoBehaviour {
     private BallSpawner spawner;
     private static Transform PlayerCenterPoint => GameObject.Find("Player").GetComponent<PlayerController>().CenterPoint;
 
+    private Vector3 _originalOutlineScale;
+
     private void OnEnable()
     {
         if (!Initialized)
@@ -32,6 +34,8 @@ public class Ball : MonoBehaviour {
             spawner = FindObjectOfType<BallSpawner>();
             Initialized = true;
         }
+
+        _originalOutlineScale = ballOutline.transform.localScale;
         
         ballOutline.SetActive(false);
         chosenBallState = false;
@@ -44,23 +48,19 @@ public class Ball : MonoBehaviour {
     }
 
     private void Update() {
-        if (transform.position.y < -8f) {
-             DespawnBall();
-        }
-
+        if (transform.position.y < -8f) { DespawnBall(); }
+        
         if (ballType == BallType.ManualRicochet) {
-            if(ballOutline)
-                ballOutline.SetActive(true);
-            //Check if the ball is at a certain distance from the player and then enable the ricochet
-            //Resize the ball outline -> get the normalized value between the current y and player trigger y
-            // Like so : float normalized = currentY / playerCenterPoint.y
-            // Use the normalized value to remap the size of the ball
             if (transform.position.y > 4) {
+                ballOutline.SetActive(true);
                 _activateRicochet = true;
-                //ballOutline.transform.localScale = Vector3.one * (2 - (normalizedValue));
             }
+            
             if (_activateRicochet) {
-                float distance = Vector2.Distance(transform.position, PlayerCenterPoint.position);
+                Vector2 scale = ballOutline.transform.localScale - Vector3.one * (1.5f * Time.deltaTime);
+                scale.x = Mathf.Clamp(scale.x, 1, 4);
+                scale.y = Mathf.Clamp(scale.y, 1, 4);
+                ballOutline.transform.localScale = scale;
             }
         }
     }
@@ -129,6 +129,12 @@ public class Ball : MonoBehaviour {
     public void FadeBall()
     {
         sr.DOFade(0.0f, 0.1f).OnComplete(DespawnBall);
+    }
+
+    public void ResetRicochet() {
+        ballOutline.SetActive(false);
+        ballOutline.transform.localScale = _originalOutlineScale;
+        _activateRicochet = false;
     }
 }
 

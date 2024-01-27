@@ -7437,10 +7437,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ball
       objectReference: {fileID: 0}
-    - target: {fileID: 209135909147962640, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4845578413776974413, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -7484,6 +7480,10 @@ PrefabInstance:
     - target: {fileID: 4845578413776974413, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9076856552159773276, guid: d921b017ba3d1b54d86a1377973c8df6, type: 3}
+      propertyPath: ballOutline
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
