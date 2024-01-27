@@ -11,18 +11,22 @@ public class GameManager : MonoBehaviour
     public int combo;
     private int loseCombo = 0;
     public float time;
+
     public PlayerController player;
     public BallSpawner ballSpawner;
     public GameObject namingPanel;
     public GameObject leaderboard;
+
     public static GameManager instance;
 
     public Score scoretext;
     public int scoreMultiplier;
 
     public TextMeshProUGUI funText;
+    public TextMeshProUGUI startText;
 
-
+    public AudioSource music;
+    public bool hasStarted;
     private void Start()
     {
         instance = this;
@@ -45,7 +49,10 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        time += Time.deltaTime;
+        if (hasStarted) {
+            time += Time.deltaTime;
+            startText.enabled = false;
+        }
 
         if (funFactor < 0)
         {
@@ -54,7 +61,15 @@ public class GameManager : MonoBehaviour
 
         ManageCombo();
 
-        funText.text = combo.ToString();
+        funText.text = ballSpawner.timeSinceLastSpawn.ToString();
+
+        if (!hasStarted) {
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                music.Play();
+                ballSpawner.timeSinceLastSpawn = 1.6875f;
+                hasStarted = true;
+            }
+        }
     }
 
     public void ManageCombo()
@@ -73,7 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void LoseCombo()
     {
-        combo = 0;
+        combo = 1;
         loseCombo++;
         if(loseCombo >= 10) { funFactor--; }
     }
