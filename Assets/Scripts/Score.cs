@@ -14,13 +14,19 @@ public class Score : MonoBehaviour
         Display();
     }
 
-    public void IncreaseScoreBy(int points) {
-        score += points;
+    public void IncreaseScoreBy(int points)
+    {
+        text.transform.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.1f).onComplete = delegate
+        {
+            text.transform.DOScale(Vector3.one, 0.1f);
+        };
+
+        score += points * GameManager.instance.combo;
         //text.text = "SCORE \n" + score.ToString("00000000");
     }
 
     void Display() {
-        DOVirtual.Int(prescore, score, 0.2f, (x) => {
+        DOVirtual.Int(prescore, score, 1f, (x) => {
             prescore = x;
             text.text = "SCORE \n" + prescore.ToString("00000000");
         }).OnComplete(()=> { Display(); });

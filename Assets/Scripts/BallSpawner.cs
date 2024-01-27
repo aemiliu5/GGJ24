@@ -19,17 +19,20 @@ public class BallSpawner : MonoBehaviour
         }
     }
     
-    void Update()
+    private void Update()
     {
-        SpawnBallManuallyInputs();
-        SpawnBallAutomatically();
+        if (GameManager.instance.hasStarted)
+        {
+            SpawnBallManuallyInputs();
+            SpawnBallAutomatically();
+        }
     }
 
     private void SpawnBallAutomatically()
     {
         timeSinceLastSpawn += Time.deltaTime;
 
-        if (timeSinceLastSpawn > timeBetween)
+        if (timeSinceLastSpawn >= timeBetween)
         {
             SpawnBall(0.2f);
             timeSinceLastSpawn = 0;
