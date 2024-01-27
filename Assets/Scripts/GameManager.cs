@@ -29,6 +29,12 @@ public class GameManager : MonoBehaviour
         instance = this;
         _audioMixer = InGameAudioMixer.instance;
     }
+
+    public void BeginPlay() {
+        player.enabled = true;
+        namingPanel.SetActive(false);
+    }
+
     public void ReturnToMainMenu() {
         SceneManager.LoadScene(0);
     }
@@ -92,15 +98,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Lose() {
+    public void Lose()
+    {
         player.StatsToPassToPlayerData(funFactor, scoretext.score);
         player.enabled = false;
         ballSpawner.enabled = false;
-        namingPanel.SetActive(true);
-    }
-
-    public void EnableLeaderboard() {
-        namingPanel.SetActive(false);
         leaderboard.SetActive(true);
     }
 }
