@@ -6,20 +6,64 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     public float ballForceHeight;
+    public BallType ballType;
+
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
     
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        
+        DetermineBallType();
         ApplyBallForce();
+    }
+
+    private void Update()
+    {
+        if (transform.position.y < -8f)
+            Destroy(gameObject);
     }
 
     public void ApplyBallForce()
     {
         Vector3 force = new Vector3(0, ballForceHeight, 0);
-        GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse);
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
 
     public void ZeroVelocity()
     {
-        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+       rb.velocity = Vector2.zero;
+    }
+    
+    private void DetermineBallType()
+    {
+        switch (ballType)
+        {
+            case BallType.AutoRicochet:
+                sr.color = Color.blue;
+                break;
+            case BallType.ManualRicochet:
+                sr.color = Color.yellow;
+                break;
+            case BallType.Harmful:
+                sr.color = Color.red;
+                break;
+            case BallType.Holdable:
+                sr.color = new Color(1f, 0.7f, 0f); // orange
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 }
+
+public enum BallType
+{
+    AutoRicochet,
+    ManualRicochet,
+    Harmful,
+    Holdable,
+}
+

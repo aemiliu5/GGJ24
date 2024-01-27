@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +10,11 @@ public class PlayerController : MonoBehaviour
     public float leftBound, rightBound;
 
     public Ball currentBall;
-    public bool canRethrowBall;
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
+    public bool ballInTrigger;
+    
     private void Update()
     {
+        // ----- Movement -----
         if (Input.GetKey(KeyCode.A) && transform.position.x > leftBound)
         {
             transform.Translate(-speed * Time.deltaTime, 0, 0);
@@ -29,22 +25,38 @@ public class PlayerController : MonoBehaviour
             transform.Translate(speed * Time.deltaTime, 0, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canRethrowBall)
+        // ----- Handle Balls -----
+        if (ballInTrigger)
         {
-            currentBall.ZeroVelocity();
-            currentBall.ApplyBallForce();
+            switch (currentBall.ballType)
+            {
+                case BallType.AutoRicochet: 
+                    currentBall.ZeroVelocity();
+                    currentBall.ApplyBallForce();
+                    break;
+                
+                case BallType.ManualRicochet:
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        currentBall.ZeroVelocity();
+                        currentBall.ApplyBallForce();
+                    }
+                    
+                    break;
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        canRethrowBall = true;
+        ballInTrigger = true;
         currentBall = col.gameObject.GetComponent<Ball>();
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        canRethrowBall = false;
+        ballInTrigger = false;
         currentBall = null;
     }
 }
+
