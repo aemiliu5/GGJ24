@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
 
     public void Lose()
     {
+        player.StatsToPassToPlayerData(funFactor, scoretext.score);
         player.enabled = false;
         ballSpawner.enabled = false;
         leaderboard.SetActive(true);

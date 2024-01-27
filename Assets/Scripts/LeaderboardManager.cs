@@ -17,7 +17,7 @@ public class LeaderboardManager : MonoBehaviour {
             _initialized = true;
         }
 
-        _playerData.Add(GameManager.instance.player.playerData);
+        AddToPlayerData(GameManager.instance.player.playerData);
 
         if (_playerData == null) return;
         //Display leaderboard entries

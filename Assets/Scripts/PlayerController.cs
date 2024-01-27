@@ -67,5 +67,10 @@ public class PlayerController : MonoBehaviour
     public void PlayerNaming(string name) {
         playerData.playerName = name;
     }
+
+    public void StatsToPassToPlayerData(int funRating, int score) {
+        playerData.funRating = funRating;
+        playerData.playerScore = score;
+    }
 }
 
