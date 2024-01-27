@@ -7,14 +7,16 @@ public class LeaderboardManager : MonoBehaviour {
     [SerializeField] private Transform leaderboardEntryHolder;
     private List<PlayerData> _playerData = new List<PlayerData>();
 
-    private SaveManager _saveManager;
+    private bool _hasEntries;
     private bool _initialized;
+    
     private void OnEnable() {
         if (!_initialized) {
-            _saveManager = SaveManager.instance;
             var savedData = SaveManager.instance.GetData(SaveKeywords.PlayerDataKey);
             if (savedData != null)
                 _playerData = (List<PlayerData>)savedData;
+            
+            _hasEntries = _playerData.Count > 0;
             _initialized = true;
         }
         
@@ -47,4 +49,6 @@ public class LeaderboardManager : MonoBehaviour {
         _playerData.Add(leaderboardEntry);
         SaveManager.instance.SaveData(SaveKeywords.PlayerDataKey, _playerData);
     }
+
+    public bool HasEntries() => _hasEntries;
 }
