@@ -60,4 +60,6 @@ public class SaveJson
         sw.Write(jsonConversion);
         sw.Dispose();
     }
+    
+    public bool HasSavedKey(string key) { return _data.ContainsKey(key); }
 }
