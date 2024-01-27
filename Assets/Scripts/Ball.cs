@@ -63,9 +63,6 @@ public class Ball : MonoBehaviour
                 sr.color = Color.yellow;
                 ballPoints = points * 2;
                 break;
-            case BallType.Harmful:
-                sr.color = Color.red;
-                break;
             case BallType.Holdable:
                 sr.color = new Color(1f, 0.7f, 0f); // orange
                 ballPoints = points;
