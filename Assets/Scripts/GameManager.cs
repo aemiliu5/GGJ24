@@ -9,12 +9,17 @@ public class GameManager : MonoBehaviour
     public int funFactor; // 3 - ecstatic, 2 - happy, 1 - neutral, 0 - disappointed - <0 dies
     public int combo;
 
-    public GameObject ballPrefab;
+    public GameObject ballPrefabParent;
+    public Queue<GameObject> balls = new Queue<GameObject>();
 
     public static GameManager instance;
     
     private void Start()
     {
+        for(int i = 0; i < ballPrefabParent.transform.childCount; i++) {
+            balls.Enqueue(ballPrefabParent.transform.GetChild(i).gameObject);
+        }
+        Debug.Log(balls.Count);
         instance = this;
     }
     
@@ -48,7 +53,11 @@ public class GameManager : MonoBehaviour
 
     private void SpawnBall(BallType ballType, float offset)
     {
-        GameObject spawned = Instantiate(ballPrefab, GameObject.Find("Player").transform.position + new Vector3(0, offset, 0), Quaternion.identity);
+
+        GameObject spawned = balls.Dequeue();
+        spawned.SetActive(true);
+        spawned.transform.localPosition = GameObject.Find("Player").transform.position + new Vector3(0, offset, 0);
+        spawned.transform.localRotation = Quaternion.identity;
         spawned.GetComponent<Ball>().ballType = ballType;
     }
 }

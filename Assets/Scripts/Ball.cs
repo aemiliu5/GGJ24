@@ -22,8 +22,10 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -8f)
-            Destroy(gameObject);
+        if (transform.position.y < -8f) {
+            FindObjectOfType<GameManager>().balls.Enqueue(this.gameObject);
+            gameObject.SetActive(false); 
+        }
     }
 
     public void ApplyBallForce()
