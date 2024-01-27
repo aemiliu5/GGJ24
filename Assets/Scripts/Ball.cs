@@ -75,9 +75,6 @@ public class Ball : MonoBehaviour {
                 sr.color = Color.yellow;
                 ballPoints = points * 2;
                 break;
-            case BallType.Harmful:
-                sr.color = Color.red;
-                break;
             case BallType.Holdable:
                 //Assign the default holdable ball state
                 HoldableState = HoldableBallState.Neutral;
