@@ -17,12 +17,14 @@ public class LeaderboardManager : MonoBehaviour {
             _initialized = true;
         }
 
-        AddToPlayerData(GameManager.instance.player.playerData);
+        if(FindObjectOfType<GameManager>())
+            AddToPlayerData(GameManager.instance.player.playerData);
 
         if (_playerData == null) return;
         //Display leaderboard entries
         DisplayEntries();
     }
+    
     
     private void OnDisable() {
         //Destroy previous entries

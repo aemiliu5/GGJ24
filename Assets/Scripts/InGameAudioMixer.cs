@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Runtime.CompilerServices;
 using DG.Tweening;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ public class InGameAudioMixer : MonoBehaviour {
     private void Start() {
         _saveManager = SaveManager.instance;
         Initialize();
+        FunFactor = FunFactor.Happy;
     }
 
     private void Update() {
@@ -65,9 +67,9 @@ public class InGameAudioMixer : MonoBehaviour {
                 ChangeSourceVolume(additionalTracks[0], true);
                 ChangeSourceVolume(additionalTracks[1], true);
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
+        
+        Debug.Log(FunFactor);
         StartCoroutine(WaitAndSet(FunFactor));
     }
 
@@ -78,14 +80,19 @@ public class InGameAudioMixer : MonoBehaviour {
 
     private void ChangeSourceVolume(AudioSource audioSource, bool fullVolume) {
         float vol = 0.0f;
-        try { vol = (float)_saveManager.GetData(SaveKeywords.MasterVolume); }
-        catch (InvalidCastException) {
-            double castVol = (double)_saveManager.GetData(SaveKeywords.MasterVolume);
-            vol = (float)castVol;
+        if (_saveManager.HasSavedKey(SaveKeywords.MasterVolume))
+        {
+            try { vol = (float)_saveManager.GetData(SaveKeywords.MasterVolume); }
+            catch (InvalidCastException) {
+                double castVol = (double)_saveManager.GetData(SaveKeywords.MasterVolume);
+                vol = (float)castVol;
+            }     
+            _currentFullVolume =  vol;
         }
-        
-        _currentFullVolume = vol;
-        
+        else
+        {
+            _currentFullVolume = 1.0f;
+        }
         float targetVolume = fullVolume ? _currentFullVolume : 0;
         float originalVolume = audioSource.volume;
         DOVirtual.Float(originalVolume, targetVolume, transitionTimeStep, (x) => {

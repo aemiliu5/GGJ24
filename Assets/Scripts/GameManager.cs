@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -30,11 +31,6 @@ public class GameManager : MonoBehaviour
         _audioMixer = InGameAudioMixer.instance;
     }
 
-    public void BeginPlay() {
-        player.enabled = true;
-        namingPanel.SetActive(false);
-    }
-
     public void ReturnToMainMenu() {
         SceneManager.LoadScene(0);
     }
@@ -58,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         ManageCombo();
 
-        funText.text = ballSpawner.timeSinceLastSpawn.ToString();
+        funText.text = combo.ToString();
 
         if (!hasStarted) {
             if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
@@ -75,7 +71,9 @@ public class GameManager : MonoBehaviour
         if (combo > 10)
         {
             funFactor++;
-            FunFactor fFactor = (FunFactor)funFactor;
+            int enumIndex = funFactor;
+            enumIndex = Mathf.Clamp(enumIndex, 0, Enum.GetValues(typeof(FunFactor)).Length);
+            FunFactor fFactor = (FunFactor)enumIndex;
             _audioMixer.FunFactor = fFactor;
         }
     }
@@ -93,16 +91,23 @@ public class GameManager : MonoBehaviour
         if (loseCombo >= 10)
         {
             funFactor--;
-            FunFactor fFactor = (FunFactor)funFactor;
+            int enumIndex = funFactor;
+            enumIndex = Mathf.Clamp(enumIndex, 0, Enum.GetValues(typeof(FunFactor)).Length);
+            FunFactor fFactor = (FunFactor)enumIndex;
             _audioMixer.FunFactor = fFactor;
         }
     }
 
-    public void Lose()
-    {
+    public void Lose() {
         player.StatsToPassToPlayerData(funFactor, scoretext.score);
         player.enabled = false;
         ballSpawner.enabled = false;
+        namingPanel.SetActive(true);
+    }
+
+    public void EnableLeaderboard() {
+        //leaderboard.GetComponent<LeaderboardManager>().AddToPlayerData(player.playerData);
+        namingPanel.SetActive(false);
         leaderboard.SetActive(true);
     }
 }
