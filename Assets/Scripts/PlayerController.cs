@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
     public void HittingBall() {
         currentBall.ZeroVelocity();
         currentBall.ApplyBallForce();
-        GameManager.instance.scoretext.IncreaseScoreBy(currentBall.points);
+        GameManager.instance.scoretext.IncreaseScoreBy(currentBall.GetBallPoint());
         ballInTrigger = false;
     }
 

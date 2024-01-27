@@ -10,7 +10,7 @@ public class BallSpawner : MonoBehaviour
     public float timeSinceLastSpawn;
     public int activeBalls;
     public int ballAngle;
-
+    public int ballPoints;
     private void Start()
     {
         for(int i = 0; i < ballPrefabParent.transform.childCount; i++) 
@@ -63,7 +63,7 @@ public class BallSpawner : MonoBehaviour
     {
         GameObject spawned = balls.Dequeue();
         Ball ball = spawned.GetComponent<Ball>();
-
+        ball.SetPoints(ballPoints);
         if (ballType == -1)
         {
             ball.ballType = (BallType)Random.Range(0, 3);

@@ -7,7 +7,8 @@ public class Ball : MonoBehaviour
 {
     public float ballForceHeight;
     public BallType ballType;
-    public int points;
+    private int points;
+    private int ballPoints;
     public bool Initialized = false;
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -54,25 +55,32 @@ public class Ball : MonoBehaviour
     {
         switch (ballType)
         {
-
             case BallType.AutoRicochet:
                 sr.color = Color.blue;
+                ballPoints = points;
                 break;
             case BallType.ManualRicochet:
                 sr.color = Color.yellow;
+                ballPoints = points * 2;
                 break;
             case BallType.Harmful:
                 sr.color = Color.red;
                 break;
             case BallType.Holdable:
                 sr.color = new Color(1f, 0.7f, 0f); // orange
+                ballPoints = points;
+                //when you put the ball on your head or feet points go +1
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
     }
-
-    
+    public int GetBallPoint() {
+        return ballPoints;
+    }
+    public void SetPoints(int p) {
+        points = p;
+    }
     // Collider starts out disabled so it doesn't count in the score
     // We enable it later to compensate.
     private IEnumerator EnableCollider()
