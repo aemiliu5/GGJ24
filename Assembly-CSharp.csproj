@@ -48,12 +48,14 @@
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\PlayerData.cs" />
     <Compile Include="Assets\Scripts\SaveKeywords.cs" />
-    <Compile Include="Assets\LeaderboardTester.cs" />
     <Compile Include="Assets\Scripts\SaveManager.cs" />
     <Compile Include="Assets\Scripts\LeaderboardManager.cs" />
     <Compile Include="Assets\Scripts\FunFactor.cs" />
+    <Compile Include="Assets\Scripts\OptionsMenuHandler.cs" />
     <Compile Include="Assets\Scripts\SaveJson.cs" />
+    <Compile Include="Assets\Scripts\LeaderboardTester.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\LeaderboardEntry.cs" />
     <Reference Include="UnityEngine">

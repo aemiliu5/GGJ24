@@ -15,8 +15,7 @@ public class SaveManager : MonoBehaviour {
     [SerializeField] private string saveFileName;
     private SaveJson _saveHandler;
 
-    public void SaveData(string key, object data) {
-        _saveHandler.SaveKey(key, data);
-    }
+    public void SaveData(string key, object data) { _saveHandler.SaveKey(key, data); }
     public object GetData(string key) => _saveHandler.GetObject(key);
+    public bool HasSavedKey(string key) => _saveHandler.HasSavedKey(key);
 }
