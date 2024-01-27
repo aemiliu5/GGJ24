@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LeaderboardManager : MonoBehaviour {
@@ -28,7 +29,8 @@ public class LeaderboardManager : MonoBehaviour {
     }
     
     private void DisplayEntries() {
-        foreach (var playerDataEntry in _playerData) {
+    	var orderedList = _playerData.OrderByDescending(data => data.playerScore);
+        foreach (var playerDataEntry in orderedList) {
             GameObject go = Instantiate(leaderboardEntry.gameObject, leaderboardEntryHolder);
             LeaderboardEntry entry = go.GetComponent<LeaderboardEntry>();
             entry.InitializeLeaderboardEntry(playerDataEntry);
