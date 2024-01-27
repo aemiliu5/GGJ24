@@ -47,12 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f497cdcf3eace04899f81e4e2b46c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseAudioSource: {fileID: 6814716030753064080}
   additionalTracks:
   - {fileID: 2362634379398847944}
   - {fileID: 9051951632716317555}
   transitionTimeStep: 0.5
-  funFactor: 0
-  testing: 1
 --- !u!1 &4998046758745911758
 GameObject:
   m_ObjectHideFlags: 0

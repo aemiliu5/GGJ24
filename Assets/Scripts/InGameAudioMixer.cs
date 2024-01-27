@@ -11,33 +11,44 @@ public class InGameAudioMixer : MonoBehaviour {
             instance = this;
     }
     #endregion
+
+    [SerializeField] private AudioSource baseAudioSource;
     [SerializeField] private AudioSource[] additionalTracks;
     [SerializeField] private float transitionTimeStep = 0.5f;
 
-    public FunFactor funFactor;
-    public bool testing;
+    public FunFactor FunFactor { get; set; }
     
     private float _currentFullVolume;
     private FunFactor _currentFunFactor;
 
     private SaveManager _saveManager;
 
-    private void Start() { Initialize(); }
+    private void Start() {
+        _saveManager = SaveManager.instance;
+        Initialize();
+    }
 
     private void Update() {
-        if (!testing) return;
-        CheckFunFactorTesting();
+        ChangeFunFactor();
     }
 
     private void Initialize() {
-        if(testing)
-            _currentFunFactor = funFactor;
-        _saveManager = SaveManager.instance;
+        _currentFunFactor = 0;
+        FunFactor = (FunFactor)1;
+        ChangeFunFactor();
+        
+        baseAudioSource.Stop();
+        foreach (var track in additionalTracks) { track.Stop(); }
     }
 
-    private void ChangeFunFactor(FunFactor factor) {
-        if (_currentFunFactor == factor) return;
-        switch (factor) {
+    public void EnableMusic() {
+        baseAudioSource.Play();
+        foreach (var track in additionalTracks) { track.Play(); }
+    }
+
+    private void ChangeFunFactor() {
+        if (_currentFunFactor == FunFactor) return;
+        switch (FunFactor) {
             case FunFactor.Disappointed:
                 ChangeSourceVolume(additionalTracks[0], false);
                 ChangeSourceVolume(additionalTracks[1], false);
@@ -57,35 +68,7 @@ public class InGameAudioMixer : MonoBehaviour {
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        StartCoroutine(WaitAndSet(factor));
-    }
-
-    private void CheckFunFactorTesting() {
-        if (funFactor == _currentFunFactor) {
-            return;
-        }
-        switch (funFactor) {
-            case FunFactor.Disappointed:
-                ChangeSourceVolume(additionalTracks[0], false);
-                ChangeSourceVolume(additionalTracks[1], false);
-                break;
-            case FunFactor.Neutral:
-                ChangeSourceVolume(additionalTracks[0], false);
-                ChangeSourceVolume(additionalTracks[1], false);
-                break;
-            case FunFactor.Happy:
-                ChangeSourceVolume(additionalTracks[0], true);
-                ChangeSourceVolume(additionalTracks[1], false);
-                break;
-            case FunFactor.Ecstatic:
-                ChangeSourceVolume(additionalTracks[0], true);
-                ChangeSourceVolume(additionalTracks[1], true);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
-
-        StartCoroutine(WaitAndSet(funFactor));
+        StartCoroutine(WaitAndSet(FunFactor));
     }
 
     private IEnumerator WaitAndSet(FunFactor factor) {

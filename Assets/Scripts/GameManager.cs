@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -16,7 +13,7 @@ public class GameManager : MonoBehaviour
     public BallSpawner ballSpawner;
     public GameObject namingPanel;
     public GameObject leaderboard;
-
+    
     public static GameManager instance;
 
     public Score scoretext;
@@ -25,11 +22,12 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI funText;
     public TextMeshProUGUI startText;
 
-    public AudioSource music;
+    private InGameAudioMixer _audioMixer;
     public bool hasStarted;
     private void Start()
     {
         instance = this;
+        _audioMixer = InGameAudioMixer.instance;
     }
 
     public void BeginPlay() {
@@ -64,7 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (!hasStarted) {
             if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
-                music.Play();
+                _audioMixer.EnableMusic();
                 ballSpawner.timeSinceLastSpawn = 1.6875f;
                 ballSpawner.enabled = true;
                 hasStarted = true;
@@ -77,6 +75,8 @@ public class GameManager : MonoBehaviour
         if (combo > 10)
         {
             funFactor++;
+            FunFactor fFactor = (FunFactor)funFactor;
+            _audioMixer.FunFactor = fFactor;
         }
     }
 
@@ -90,7 +90,12 @@ public class GameManager : MonoBehaviour
     {
         combo = 1;
         loseCombo++;
-        if(loseCombo >= 10) { funFactor--; }
+        if (loseCombo >= 10)
+        {
+            funFactor--;
+            FunFactor fFactor = (FunFactor)funFactor;
+            _audioMixer.FunFactor = fFactor;
+        }
     }
 
     public void Lose()
