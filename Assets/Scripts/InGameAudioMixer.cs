@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
 using DG.Tweening;
 using UnityEngine;
 
@@ -122,7 +121,6 @@ public class InGameAudioMixer : MonoBehaviour {
         
         if (maxVolumeContribution != 0.0f) {
             targetVolume = fullVolume ? 1 - (maxVolumeContribution / _currentFullVolume) : 0;
-            Debug.Log($"TARGET VOLUME : {targetVolume}");
         }
         else {
             targetVolume = fullVolume ? _currentFullVolume : 0;
