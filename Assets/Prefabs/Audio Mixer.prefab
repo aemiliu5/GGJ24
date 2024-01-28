@@ -52,8 +52,9 @@ MonoBehaviour:
   - {fileID: 2362634379398847944}
   - {fileID: 9051951632716317555}
   transitionTimeStep: 0.5
-  pneustaVolumeContributionPercentage: 0.5
-  synthVolumeContributionPercentage: 0.5
+  loseAudioClip: {fileID: 0}
+  pneustaVolumeContributionPercentage: 0.55
+  synthVolumeContributionPercentage: 0.6
 --- !u!1 &4998046758745911758
 GameObject:
   m_ObjectHideFlags: 0

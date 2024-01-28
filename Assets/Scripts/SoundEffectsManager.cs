@@ -31,7 +31,8 @@ public class SoundEffectsManager : MonoBehaviour {
     }
 
     public void PlayOneShot(AudioClip audioClip) {
-        AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, GetMaxVolume() + 0.2f);   
+        AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, GetMaxVolume() + 0.2f);
+        Debug.Log($"SFX VOLUME : {GetMaxVolume() + 0.2f}");
     }
 
     public void PlayAudioSourceClip(AudioClip audioClip, bool shouldLoop) {
