@@ -19,7 +19,7 @@ public class MainMenuThemeHandler : MonoBehaviour {
     }
 
     private IEnumerator WaitAndPlayAmbient() {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.3f);
         _audioSource.clip = ambientAudioClip;
         _audioSource.Play();
         DOVirtual.Float(0.0f, 0.5f, 2.0f, (x) => {

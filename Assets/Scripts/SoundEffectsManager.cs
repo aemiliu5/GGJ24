@@ -13,10 +13,25 @@ public class SoundEffectsManager : MonoBehaviour {
             instance = this;
         _audioSource = GetComponent<AudioSource>();
         AddButtonClickOnButtons();
+        if (!SaveManager.instance.HasSavedKey(SaveKeywords.MasterVolume)) {
+            SaveManager.instance.SaveData(SaveKeywords.MasterVolume, 0.8f);
+        }
+        
+        float vol = 0.0f;
+        try { vol = (float)SaveManager.instance.GetData(SaveKeywords.MasterVolume); }
+        catch (InvalidCastException) {
+            double castVol = (double)SaveManager.instance.GetData(SaveKeywords.MasterVolume);
+            vol = (float)castVol;
+        }
+
+        AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+        foreach (var source in audioSources) {
+            source.volume = vol;
+        }
     }
 
     public void PlayOneShot(AudioClip audioClip) {
-        AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, GetMaxVolume());   
+        AudioSource.PlayClipAtPoint(audioClip, Vector3.zero, GetMaxVolume() + 0.2f);   
     }
 
     public void PlayAudioSourceClip(AudioClip audioClip, bool shouldLoop) {
@@ -40,7 +55,7 @@ public class SoundEffectsManager : MonoBehaviour {
     }
 
     private void PlayButtonClip() {
-        AudioSource.PlayClipAtPoint(buttonClip, Vector3.zero, GetMaxVolume());
+        AudioSource.PlayClipAtPoint(buttonClip, Vector3.zero, GetMaxVolume() + 0.2f);
     }
     
     private float GetMaxVolume() {

@@ -63,8 +63,7 @@ public class Ball : MonoBehaviour {
         if (ballType == BallType.ManualRicochet) {
             if(shouldRotate)
                 transform.Rotate(Vector3.forward, 359.0f * Time.deltaTime);
-            if (transform.position.y > 4)
-            {
+            if (transform.position.y > 4) {
                 shouldRotate = true;
                 ballOutline.SetActive(true);
                 _activateRicochet = true;

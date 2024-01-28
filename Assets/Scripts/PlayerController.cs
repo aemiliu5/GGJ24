@@ -87,10 +87,9 @@ public class PlayerController : MonoBehaviour {
                 SoundEffectsManager.instance.PlayOneShot(hitAutoRicochetBallClip);
                 break;
             case BallType.ManualRicochet:
-                SoundEffectsManager.instance.PlayOneShot(hitManualRicochetBallClip);
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
+                if (Input.GetKeyDown(KeyCode.Space)) {
                     HittingBall();
+                    SoundEffectsManager.instance.PlayOneShot(hitManualRicochetBallClip);
                     currentBall.ResetRicochet();
                 }
 
@@ -200,9 +199,9 @@ public class PlayerController : MonoBehaviour {
 
             currentBall = col.gameObject.GetComponent<Ball>();
 
-            if (currentBall.ballType == BallType.ManualRicochet)
-            {
+            if (currentBall.ballType == BallType.ManualRicochet) {
                 currentBall.shouldRotate = false;
+                currentBall.transform.rotation = Quaternion.Euler(Vector3.zero);
                 currentBall.GetComponent<Rigidbody2D>().totalTorque = 0;
             }
 
