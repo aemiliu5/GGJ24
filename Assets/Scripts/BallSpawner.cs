@@ -34,7 +34,7 @@ public class BallSpawner : MonoBehaviour
 
         if (timeSinceLastSpawn >= timeBetween)
         {
-            SpawnBall(0.2f);
+            SpawnBall(0.2f, Mathf.Clamp(GameManager.instance.funFactor, 0, 3));
             timeSinceLastSpawn = 0;
         }
     }
@@ -43,33 +43,28 @@ public class BallSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SpawnBall(0.2f, 0);
+            SpawnBall(0.2f, -1, 0);
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            SpawnBall(0.2f, 1);
+            SpawnBall(0.2f, -1, 1);
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SpawnBall(0.2f, 2);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            SpawnBall(0.2f, 3);
+            SpawnBall(0.2f, -1, 2);
         }
     }
     
-    private void SpawnBall(float offset, int ballType = -1)
+    private void SpawnBall(float offset, int ballRandomness = 3, int ballType = -1)
     {
         GameObject spawned = balls.Dequeue();
         Ball ball = spawned.GetComponent<Ball>();
         ball.SetPoints(ballPoints);
         if (ballType == -1)
         {
-            ball.ballType = (BallType)Random.Range(0, 1);
+            ball.ballType = (BallType)Random.Range(0, ballRandomness);
         }
         else
         {
