@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class King : MonoBehaviour
 {
-    public Sprite ecstaticSprite;
-    public Sprite happySprite;
+    public Sprite ecstaticSpriteLeft, ecstaticSpriteRight;
+    public Sprite happySpriteLeft, happySpriteRight;
     public Sprite neutralSprite;
     public Sprite disappointedSprite;
 
     public float breathingAmount;
     public float breathingDuration;
+    public float spriteTimer;
+    public float spriteTimerEnd;
     private SpriteRenderer sr;
 
     private void Start()
@@ -35,6 +37,8 @@ public class King : MonoBehaviour
 
     private void Update()
     {
+        spriteTimer += Time.deltaTime;
+        
         switch (GameManager.instance.funFactor)
         {
             case 0:
@@ -50,13 +54,32 @@ public class King : MonoBehaviour
                 break;
             
             case 2:
-                sr.sprite = happySprite;
+                if (spriteTimer > spriteTimerEnd)
+                {
+                    if (sr.sprite == happySpriteLeft)
+                        sr.sprite = happySpriteRight;
+                    else
+                        sr.sprite = happySpriteLeft;
+
+                    spriteTimer = 0;
+                }
+                
+                
                 breathingAmount = 0.54f;
                 breathingDuration = 1f;
                 break;
             
             case 3:
-                sr.sprite = ecstaticSprite;
+                if (spriteTimer > spriteTimerEnd)
+                {
+                    if (sr.sprite == ecstaticSpriteLeft)
+                        sr.sprite = ecstaticSpriteRight;
+                    else
+                        sr.sprite = ecstaticSpriteLeft;
+                    
+                    spriteTimer = 0;
+                }
+
                 breathingAmount = 0.55f;
                 breathingDuration = 0.3f;
                 break;
