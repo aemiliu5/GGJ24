@@ -23,7 +23,7 @@ public class KniveThrower : MonoBehaviour {
     private float _knifeHit;
     private bool _knifeShouldFollow;
     private float _currentKnifeOccuranceTime;
-
+    private float _currentXPos;
     private GameManager _gameManager;
 
     private void Start() {
@@ -53,7 +53,7 @@ public class KniveThrower : MonoBehaviour {
         if (currentKnive == null) return;
 
         //Reset knife
-        if (currentKnive.transform.position.y < -20f) {
+        if (currentKnive.transform.position.y < -8f) {
             letItFall = false;
             knives.Enqueue(currentKnive);
             currentKnive.SetActive(false);
@@ -65,12 +65,12 @@ public class KniveThrower : MonoBehaviour {
             if (_knifeShouldFollow) {
                 Vector2 pos = new Vector2(playerTransform.position.x, kniveParent.transform.position.y);
                 currentKnive.transform.position = Vector2.Lerp(currentKnive.transform.position, pos, 10 * Time.deltaTime);
+                _currentXPos = pos.x;
             }
 
             if (letItFall) {
                 Debug.Log("SHOULD BE FALLING");
-                var knifePosition = currentKnive.transform.position;
-                Vector2 pos = new Vector2(knifePosition.x,  knifePosition.y);
+                Vector2 pos = new Vector2(_currentXPos,  currentKnive.transform.position.y);
                 pos.y -= speed * Time.deltaTime;
                 currentKnive.transform.position = pos;
             }
