@@ -76,6 +76,9 @@ public class GameManager : MonoBehaviour
     {
         if (funFactorCombo > 10)
         {
+            if (funFactor > 4)
+                return;
+            
             funFactor++;
             int enumIndex = funFactor;
             enumIndex = Mathf.Clamp(enumIndex, 0, Enum.GetValues(typeof(FunFactor)).Length);
