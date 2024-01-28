@@ -18,7 +18,9 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private MainMenuThemeHandler mainAudioSource;
 
     private void Start() {
-        FindObjectOfType<MainMenuThemeHandler>().FadeAudioSource(false);
+        MainMenuThemeHandler mainMenuThemeHandler = FindObjectOfType<MainMenuThemeHandler>();
+        mainMenuThemeHandler.ChangeMainMenuAudio();
+        mainMenuThemeHandler.FadeAudioSource(false);
     }
 
     public void LoadMainScene() {

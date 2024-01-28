@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainMenuThemeHandler : MonoBehaviour {
     [SerializeField] private float fadeDuration;
     [SerializeField] private AudioClip ambientAudioClip;
+    [SerializeField] private AudioClip mainMenuTheme;
     private AudioSource _audioSource;
     // Start is called before the first frame update
     private void Start() {
@@ -25,6 +26,11 @@ public class MainMenuThemeHandler : MonoBehaviour {
         DOVirtual.Float(0.0f, 0.5f, 2.0f, (x) => {
             _audioSource.volume = x;
         });
+    }
+
+    public void ChangeMainMenuAudio() {
+        _audioSource ??= GetComponent<AudioSource>();
+        _audioSource.clip = mainMenuTheme;
     }
 
     public void FadeAudioSource(bool fade) {
