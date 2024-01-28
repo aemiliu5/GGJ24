@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,22 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private float creditCanvasGroupFadeDuration = 1.0f;
     [SerializeField] private GameObject mainMenuHolder;
     [SerializeField] private LeaderboardManager leaderboardManager;
-    public void LoadMainScene() { SceneManager.LoadScene(mainSceneName); }
+    [SerializeField] private Transform rightCurtain;
+    [SerializeField] private Transform rightCurtainPosition;
+    [SerializeField] private Transform leftCurtain;
+    [SerializeField] private Transform leftCurtainPosition;
+    [SerializeField] private float sceneTransitionTime;
+
+    public void LoadMainScene() {
+        rightCurtain.DOMove(rightCurtainPosition.position, 2.0f);
+        leftCurtain.DOMove(leftCurtainPosition.position, 2.0f).OnComplete(delegate { StartCoroutine(WaitAndLoadScene()); });
+    }
+
+    private IEnumerator WaitAndLoadScene() {
+        yield return new WaitForSeconds(sceneTransitionTime);
+        SceneManager.LoadScene(mainSceneName);
+    }
+    
     public void QuitGame() { Application.Quit(); }
     public void FadeCanvasGroup(bool fade) {
         float target = fade ? 0.0f : 1.0f;
