@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,11 +31,23 @@ public class GameManager : MonoBehaviour
     public bool hasStarted;
 
     public Camera mainCam;
-    private void Start()
-    {
+
+    [SerializeField] private Transform rightCurtain;
+    [SerializeField] private Transform leftCurtain;
+    [SerializeField] private Transform rightCurtainPosition;
+    [SerializeField] private Transform leftCurtainPosition;
+    
+    private IEnumerator Start() {
         instance = this;
         _audioMixer = InGameAudioMixer.instance;
         mainCam = Camera.main;
+        yield return new WaitForSeconds(1.0f);
+        OpenCurtains();
+    }
+
+    private void OpenCurtains() {
+        rightCurtain.DOMove(rightCurtainPosition.position, 2.0f);
+        leftCurtain.DOMove(leftCurtainPosition.position, 2.0f);
     }
 
     public void ReturnToMainMenu() {
