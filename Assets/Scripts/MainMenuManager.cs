@@ -14,9 +14,11 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private Transform leftCurtainPosition;
     [SerializeField] private float sceneTransitionTime;
 
+    [SerializeField] private MainMenuThemeHandler mainAudioSource;
     public void LoadMainScene() {
         rightCurtain.DOMove(rightCurtainPosition.position, 2.0f);
         leftCurtain.DOMove(leftCurtainPosition.position, 2.0f).OnComplete(delegate { StartCoroutine(WaitAndLoadScene()); });
+        mainAudioSource.StartFading();
     }
 
     private IEnumerator WaitAndLoadScene() {
