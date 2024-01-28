@@ -10070,6 +10070,9 @@ MonoBehaviour:
     timePlayed: 0
   currentBall: {fileID: 0}
   holdingBallObject: {fileID: 0}
+  spinningHoldingBallClip: {fileID: 8300000, guid: 49c9d5bc309f0674885c1c3a0725cfa8, type: 3}
+  hitAutoRicochetBallClip: {fileID: 8300000, guid: 734d8498ab35a2442ae3d90760759082, type: 3}
+  hitManualRicochetBallClip: {fileID: 8300000, guid: f6dc44f6dc991b84991c9e31c7df40fe, type: 3}
   ballInTrigger: 0
   animationTimer: 0
   animationTimerEnd: 0.333

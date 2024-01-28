@@ -8,6 +8,7 @@ public class SoundEffectsManager : MonoBehaviour {
     [SerializeField] private AudioClip buttonClip;
     private AudioSource _audioSource;
     public void Awake() {
+        DontDestroyOnLoad(gameObject);
         if (instance == null)
             instance = this;
         _audioSource = GetComponent<AudioSource>();
@@ -19,9 +20,11 @@ public class SoundEffectsManager : MonoBehaviour {
     }
 
     public void PlayAudioSourceClip(AudioClip audioClip, bool shouldLoop) {
-        _audioSource.clip = audioClip;
-        _audioSource.loop = shouldLoop;
-        _audioSource.Play();
+        if (!_audioSource.isPlaying) {
+            _audioSource.clip = audioClip;
+            _audioSource.loop = shouldLoop;
+            _audioSource.Play();   
+        }
     }
 
     public void StopAudioSource() {

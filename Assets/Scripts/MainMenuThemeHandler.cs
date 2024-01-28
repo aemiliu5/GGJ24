@@ -29,6 +29,7 @@ public class MainMenuThemeHandler : MonoBehaviour {
 
     public void FadeAudioSource(bool fade) {
         float target = fade ? 0.0f : 1.0f;
+        _audioSource ??= GetComponent<AudioSource>();
         float from = _audioSource.volume <= 0 ? 0 : 1;
         DOVirtual.Float(from, target, 2.0f, (x) => {
             _audioSource.volume = x;
