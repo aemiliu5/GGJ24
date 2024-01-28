@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI funText;
     public TextMeshProUGUI startText;
 
+    public KniveThrower kt;
+
     private InGameAudioMixer _audioMixer;
     public bool hasStarted;
 
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator Start() {
         instance = this;
+        kt = FindObjectOfType<KniveThrower>();
         _audioMixer = InGameAudioMixer.instance;
         mainCam = Camera.main;
         SoundEffectsManager.instance.AddButtonClickOnButtons();
@@ -66,6 +69,13 @@ public class GameManager : MonoBehaviour
         if (hasStarted) {
             time += Time.deltaTime;
             startText.enabled = false;
+
+            ballSpawner.timeBetween = (scoretext.score * -0.0000012f) + 2.2f;
+
+            if (scoretext.score > 1000)
+            {
+                kt.ShouldStartKnifeThrower = true;
+            }
         }
 
         if (funFactor < 0)
@@ -80,7 +90,8 @@ public class GameManager : MonoBehaviour
         if (!_curtainsMoved) return;
         
         if (!hasStarted) {
-            if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
+            if (Input.GetKeyDown(KeyCode.Space) && player.enabled)
+            {
                 _audioMixer.EnableMusic();
                 FindObjectOfType<MainMenuThemeHandler>().FadeAudioSource(true);
                 ApplyAudioSettings();

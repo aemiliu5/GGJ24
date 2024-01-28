@@ -274,7 +274,7 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            if (!playingNeutralAnim)
+            if (!playingNeutralAnim && GameManager.instance.hasStarted)
             {
                 StartCoroutine(PlayNormalJugglingAnimation());
             }

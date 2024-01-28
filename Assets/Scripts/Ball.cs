@@ -40,19 +40,20 @@ public class Ball : MonoBehaviour {
             spawner = FindObjectOfType<BallSpawner>();
             Initialized = true;
         }
-
+        
         _originalOutlineScale = ballOutline.transform.localScale;
         Transform Transform;
         (Transform = transform).rotation = Quaternion.Euler(Vector3.zero);
         Transform.localScale = Vector3.one * 0.33f;
         sr.sprite = normalSprite;
+        DetermineBallType();
         
         ballOutline.SetActive(false);
         chosenBallState = false;
         rb.isKinematic = false;
         _activateRicochet = false;
         
-        DetermineBallType();
+
         ApplyBallForce();
         StartCoroutine(EnableCollider());
     }
@@ -126,8 +127,6 @@ public class Ball : MonoBehaviour {
                 ballPoints = points;
                 //when you put the ball on your head or feet points go +1
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
     }
     public int GetBallPoint() {
@@ -165,7 +164,6 @@ public enum BallType
 {
     AutoRicochet,
     ManualRicochet,
-    Holdable,
-    Harmful
+    Holdable
 }
 
