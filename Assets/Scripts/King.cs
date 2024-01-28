@@ -11,11 +11,18 @@ public class King : MonoBehaviour
     public Sprite neutralSprite;
     public Sprite disappointedSprite;
 
+    [SerializeField] private AudioClip disappointedAudioClip;
+    [SerializeField] private AudioClip neutralAudioClip;
+    [SerializeField] private AudioClip happyAudioClip;
+    [SerializeField] private AudioClip ecstaticAudioClip;
+
     public float breathingAmount;
     public float breathingDuration;
     public float spriteTimer;
     public float spriteTimerEnd;
     private SpriteRenderer sr;
+
+    private int _currentFactor = 0;
 
     private void Start()
     {
@@ -38,7 +45,25 @@ public class King : MonoBehaviour
     private void Update()
     {
         spriteTimer += Time.deltaTime;
-        
+
+        if (_currentFactor != GameManager.instance.funFactor) {
+            switch (GameManager.instance.funFactor) {
+                case 0:
+                    SoundEffectsManager.instance.PlayOneShot(disappointedAudioClip);
+                    break;
+                case 1:
+                    SoundEffectsManager.instance.PlayOneShot(neutralAudioClip);
+                    break;
+                case 2:
+                    SoundEffectsManager.instance.PlayOneShot(happyAudioClip);
+                    break;
+                case > 3:
+                    SoundEffectsManager.instance.PlayOneShot(ecstaticAudioClip);
+                    break;
+            }
+            _currentFactor = GameManager.instance.funFactor;
+        }
+
         switch (GameManager.instance.funFactor)
         {
             case 0:
@@ -64,7 +89,6 @@ public class King : MonoBehaviour
                     spriteTimer = 0;
                 }
                 
-                
                 breathingAmount = 0.54f;
                 breathingDuration = 1f;
                 break;
@@ -79,7 +103,7 @@ public class King : MonoBehaviour
                     
                     spriteTimer = 0;
                 }
-
+                
                 breathingAmount = 0.55f;
                 breathingDuration = 0.3f;
                 break;

@@ -1133,6 +1133,10 @@ MonoBehaviour:
   happySpriteRight: {fileID: 21300000, guid: 0a5c8d3d08e635b44a15e89955f80104, type: 3}
   neutralSprite: {fileID: 21300000, guid: c96c4200dcecc934c8fddbced4fa45a8, type: 3}
   disappointedSprite: {fileID: 21300000, guid: 626211aeb7322b441808807c160d82df, type: 3}
+  disappointedAudioClip: {fileID: 8300000, guid: 6520604d36027d54e8a37e619ec961eb, type: 3}
+  neutralAudioClip: {fileID: 8300000, guid: dbe3c09f44aee4b4e832f538713f1b45, type: 3}
+  happyAudioClip: {fileID: 8300000, guid: 5fa9446c25e51f4439f4de67ee5d2258, type: 3}
+  ecstaticAudioClip: {fileID: 8300000, guid: 280b52e361f7d7d4fa12b5d0616eb190, type: 3}
   breathingAmount: 0.5
   breathingDuration: 0
   spriteTimer: 0
@@ -1342,6 +1346,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Mixer
       objectReference: {fileID: 0}
+    - target: {fileID: 3794869714239147734, guid: 22642d5bae895204dae95729edeeada7, type: 3}
+      propertyPath: loseAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d8c1b909b9e72c6438dfb7d4866111d8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3720,12 +3728,14 @@ MonoBehaviour:
   scoreMultiplier: 0
   funText: {fileID: 141318449}
   startText: {fileID: 1597318433}
+  kt: {fileID: 0}
   hasStarted: 0
   mainCam: {fileID: 0}
   rightCurtain: {fileID: 210524537}
   leftCurtain: {fileID: 1350639242}
   rightCurtainPosition: {fileID: 1689515560}
   leftCurtainPosition: {fileID: 161406827}
+  loseComboClip: {fileID: 8300000, guid: 57c4c23a3e084654c8b62acb3f844907, type: 3}
 --- !u!4 &869824474
 Transform:
   m_ObjectHideFlags: 0
@@ -10056,7 +10066,8 @@ MonoBehaviour:
   holdingBallObject: {fileID: 0}
   spinningHoldingBallClip: {fileID: 8300000, guid: 49c9d5bc309f0674885c1c3a0725cfa8, type: 3}
   hitAutoRicochetBallClip: {fileID: 8300000, guid: 734d8498ab35a2442ae3d90760759082, type: 3}
-  hitManualRicochetBallClip: {fileID: 8300000, guid: f6dc44f6dc991b84991c9e31c7df40fe, type: 3}
+  hitManualRicochetBallClip: {fileID: 8300000, guid: 18d4e60c447c25f4e89547ba231635f2, type: 3}
+  knifeContactClip: {fileID: 8300000, guid: d2fe683cd7320924692a42616e845b00, type: 3}
   ballInTrigger: 0
   animationTimer: 0
   animationTimerEnd: 0.333

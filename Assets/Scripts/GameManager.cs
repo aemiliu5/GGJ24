@@ -38,7 +38,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform leftCurtain;
     [SerializeField] private Transform rightCurtainPosition;
     [SerializeField] private Transform leftCurtainPosition;
+
+    [SerializeField] private AudioClip loseComboClip;
+    
     private bool _curtainsMoved;
+    private bool _lost;
     
     private IEnumerator Start() {
         instance = this;
@@ -144,12 +148,11 @@ public class GameManager : MonoBehaviour
         loseCombo = 0;
     }
 
-    public void LoseCombo()
-    {
+    public void LoseCombo() {
         totalCombo = 1;
         loseCombo++;
-        if (loseCombo >= 3)
-        {
+        SoundEffectsManager.instance.PlayOneShot(loseComboClip);
+        if (loseCombo >= 3) {
             funFactor--;
             int enumIndex = funFactor;
             enumIndex = Mathf.Clamp(enumIndex, 0, Enum.GetValues(typeof(FunFactor)).Length);
@@ -164,10 +167,13 @@ public class GameManager : MonoBehaviour
     public void LowerMood() { funFactor--; }
     
     public void Lose() {
+        if (_lost) return;
         player.StatsToPassToPlayerData(funFactor, scoretext.score);
+        InGameAudioMixer.instance.PlayLoseSound();
         player.enabled = false;
         ballSpawner.enabled = false;
         namingPanel.SetActive(true);
+        _lost = true;
     }
 
     public void EnableLeaderboard() {

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private AudioClip spinningHoldingBallClip;
     [SerializeField] private AudioClip hitAutoRicochetBallClip;
     [SerializeField] private AudioClip hitManualRicochetBallClip;
+    [SerializeField] private AudioClip knifeContactClip;
     
     public bool ballInTrigger;
 
@@ -212,7 +213,7 @@ public class PlayerController : MonoBehaviour {
                 holdingBallObject = col.gameObject.GetComponent<Ball>();
         }
         else {
-            Debug.Log("HIT KNIFE");
+            SoundEffectsManager.instance.PlayOneShot(knifeContactClip);
             KniveThrower.instance.DamagePlayer();
             col.enabled = false;
         }

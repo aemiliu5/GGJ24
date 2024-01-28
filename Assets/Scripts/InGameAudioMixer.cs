@@ -15,6 +15,7 @@ public class InGameAudioMixer : MonoBehaviour {
     [SerializeField] private AudioSource baseAudioSource;
     [SerializeField] private AudioSource[] additionalTracks;
     [SerializeField] private float transitionTimeStep = 0.5f;
+    [SerializeField] private AudioClip loseAudioClip;
 
     [SerializeField] private float pneustaVolumeContributionPercentage;
     [SerializeField] private float synthVolumeContributionPercentage;
@@ -103,19 +104,8 @@ public class InGameAudioMixer : MonoBehaviour {
 
     private void ChangeSourceVolume(AudioSource audioSource, bool fullVolume, float maxVolumeContribution = 0.0f) {
         float vol = 0.0f;
-        if (_saveManager.HasSavedKey(SaveKeywords.MasterVolume))
-        {
-            try { vol = (float)_saveManager.GetData(SaveKeywords.MasterVolume); }
-            catch (InvalidCastException) {
-                double castVol = (double)_saveManager.GetData(SaveKeywords.MasterVolume);
-                vol = (float)castVol;
-            }
-            _currentFullVolume =  vol;
-        }
-        else
-        {
-            _currentFullVolume = 1.0f;
-        }
+        
+        _currentFullVolume = _saveManager.HasSavedKey(SaveKeywords.MasterVolume) ? GetMaxVolume() : 0.8f;
 
         float targetVolume = 0.0f;
         
@@ -130,5 +120,44 @@ public class InGameAudioMixer : MonoBehaviour {
         DOVirtual.Float(originalVolume, targetVolume, transitionTimeStep, (x) => {
             audioSource.volume = x;
         });
+    }
+
+    public void PlayLoseSound() {
+        float pneustaVolume = additionalTracks[0].volume;
+        float synthVolume = additionalTracks[1].volume;
+        float baseVolume = baseAudioSource.volume;
+        DOVirtual.Float(pneustaVolume, 0.0f, 0.5f, (x) => {
+            additionalTracks[0].volume = x;
+        });
+        DOVirtual.Float(synthVolume, 0.0f, 0.5f, (x) => {
+            additionalTracks[1].volume = x;
+        });
+        DOVirtual.Float(baseVolume, 0.0f, 0.5f, (x) => {
+            baseAudioSource.volume = x;
+        }).OnComplete(() => {
+            StartCoroutine(WaitAndFadeLoseSound());
+        });
+    }
+
+    private IEnumerator WaitAndFadeLoseSound() {
+        yield return new WaitForSeconds(0.05f);
+        baseAudioSource.clip = loseAudioClip;
+        baseAudioSource.Play();
+        DOVirtual.Float(0.0f, GetMaxVolume(), 0.2f, (x) => {
+            baseAudioSource.volume = x;
+        });
+    }
+
+    private float GetMaxVolume() {
+        float vol = 0.0f;
+        if (_saveManager.HasSavedKey(SaveKeywords.MasterVolume)) {
+            try { vol = (float)_saveManager.GetData(SaveKeywords.MasterVolume); }
+            catch (InvalidCastException) {
+                double castVol = (double)_saveManager.GetData(SaveKeywords.MasterVolume);
+                vol = (float)castVol;
+            }
+            return vol;
+        }
+        return 0.8f;
     }
 }
