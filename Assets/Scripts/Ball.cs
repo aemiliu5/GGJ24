@@ -76,6 +76,7 @@ public class Ball : MonoBehaviour {
     {
         Vector3 force = new Vector3(0, ballForceHeight, 0);
         rb.AddRelativeForce(force, ForceMode2D.Impulse);
+        transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-10f / 2, 10f / 2));
     }
 
     public void ZeroVelocity()

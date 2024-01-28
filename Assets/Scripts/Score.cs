@@ -21,7 +21,7 @@ public class Score : MonoBehaviour
             text.transform.DOScale(Vector3.one, 0.1f);
         };
 
-        score += points * GameManager.instance.combo;
+        score += points * GameManager.instance.totalCombo;
         //text.text = "SCORE \n" + score.ToString("00000000");
     }
 

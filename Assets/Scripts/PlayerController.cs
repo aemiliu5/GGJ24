@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -139,6 +140,13 @@ public class PlayerController : MonoBehaviour {
         GameManager.instance.scoretext.IncreaseScoreBy(currentBall.GetBallPoint());
         GameManager.instance.AddCombo();
         ballInTrigger = false;
+
+        if (DOTween.IsTweening(transform))
+        {
+            transform.DOKill(transform);
+        }
+        
+        transform.DOPunchScale(new Vector3(0, 0.5f, 0), 0.2f).OnComplete(() => transform.localScale = new Vector3(1,2,1));
     }
     
     private void OnTriggerEnter2D(Collider2D col)

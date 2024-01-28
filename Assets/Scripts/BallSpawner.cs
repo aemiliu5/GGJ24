@@ -69,7 +69,7 @@ public class BallSpawner : MonoBehaviour
         ball.SetPoints(ballPoints);
         if (ballType == -1)
         {
-            ball.ballType = (BallType)Random.Range(0, 3);
+            ball.ballType = (BallType)Random.Range(0, 1);
         }
         else
         {

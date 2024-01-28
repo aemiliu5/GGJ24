@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -6,8 +7,10 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public int funFactor; // 3 - ecstatic, 2 - happy, 1 - neutral, 0 - disappointed - <0 dies
-    public int combo;
-    private int loseCombo = 0;
+    
+    public int funFactorCombo;
+    public int totalCombo;
+    public int loseCombo = 0;
     public float time;
 
     public PlayerController player;
@@ -25,10 +28,13 @@ public class GameManager : MonoBehaviour
 
     private InGameAudioMixer _audioMixer;
     public bool hasStarted;
+
+    public Camera mainCam;
     private void Start()
     {
         instance = this;
         _audioMixer = InGameAudioMixer.instance;
+        mainCam = Camera.main;
     }
 
     public void ReturnToMainMenu() {
@@ -54,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         ManageCombo();
 
-        funText.text = combo.ToString();
+        funText.text = totalCombo.ToString();
 
         if (!hasStarted) {
             if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
@@ -68,34 +74,39 @@ public class GameManager : MonoBehaviour
 
     public void ManageCombo()
     {
-        if (combo > 10)
+        if (funFactorCombo > 10)
         {
             funFactor++;
             int enumIndex = funFactor;
             enumIndex = Mathf.Clamp(enumIndex, 0, Enum.GetValues(typeof(FunFactor)).Length);
             FunFactor fFactor = (FunFactor)enumIndex;
             _audioMixer.FunFactor = fFactor;
+            funFactorCombo = 0;
         }
     }
 
     public void AddCombo()
     {
-        combo++;
+        totalCombo++;
+        funFactorCombo++;
         loseCombo = 0;
     }
 
     public void LoseCombo()
     {
-        combo = 1;
+        totalCombo = 1;
         loseCombo++;
-        if (loseCombo >= 10)
+        if (loseCombo >= 3)
         {
             funFactor--;
             int enumIndex = funFactor;
             enumIndex = Mathf.Clamp(enumIndex, 0, Enum.GetValues(typeof(FunFactor)).Length);
             FunFactor fFactor = (FunFactor)enumIndex;
             _audioMixer.FunFactor = fFactor;
+            loseCombo = 0;
         }
+        
+        mainCam.transform.DOShakePosition(0.1f, new Vector3(0.25f, 0, 0)).OnComplete(() => mainCam.transform.position = new (0,0,-10));
     }
 
     public void Lose() {

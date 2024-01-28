@@ -69,7 +69,7 @@ public class InGameAudioMixer : MonoBehaviour {
                 break;
         }
         
-        Debug.Log(FunFactor);
+        //Debug.Log(FunFactor);
         StartCoroutine(WaitAndSet(FunFactor));
     }
 
