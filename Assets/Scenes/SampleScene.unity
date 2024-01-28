@@ -1338,26 +1338,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2362634379398847944, guid: 22642d5bae895204dae95729edeeada7, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 242f777f6bfa4d241b324508c1c2b31e, type: 3}
     - target: {fileID: 3599351265244405193, guid: 22642d5bae895204dae95729edeeada7, type: 3}
       propertyPath: m_Name
       value: Audio Mixer
       objectReference: {fileID: 0}
-    - target: {fileID: 3794869714239147734, guid: 22642d5bae895204dae95729edeeada7, type: 3}
-      propertyPath: testing
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6814716030753064080, guid: 22642d5bae895204dae95729edeeada7, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 382742d9deeef494aaf33d0b72fbb8c4, type: 3}
-    - target: {fileID: 9051951632716317555, guid: 22642d5bae895204dae95729edeeada7, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 534901ad3e4b86f45959b3234477ad73, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

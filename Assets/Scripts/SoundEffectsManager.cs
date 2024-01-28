@@ -36,6 +36,7 @@ public class SoundEffectsManager : MonoBehaviour {
 
     public void PlayAudioSourceClip(AudioClip audioClip, bool shouldLoop) {
         if (!_audioSource.isPlaying) {
+            _audioSource.volume = GetMaxVolume() + 0.2f;
             _audioSource.clip = audioClip;
             _audioSource.loop = shouldLoop;
             _audioSource.Play();   

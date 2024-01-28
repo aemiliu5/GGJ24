@@ -17,6 +17,9 @@ public class InGameAudioMixer : MonoBehaviour {
     [SerializeField] private AudioSource[] additionalTracks;
     [SerializeField] private float transitionTimeStep = 0.5f;
 
+    [SerializeField] private float pneustaVolumeContributionPercentage;
+    [SerializeField] private float synthVolumeContributionPercentage;
+
     public FunFactor FunFactor { get; set; }
     
     private float _currentFullVolume;
@@ -52,20 +55,20 @@ public class InGameAudioMixer : MonoBehaviour {
         if (_currentFunFactor == FunFactor) return;
         switch (FunFactor) {
             case FunFactor.Disappointed:
-                ChangeSourceVolume(additionalTracks[0], false);
-                ChangeSourceVolume(additionalTracks[1], false);
+                ChangeSourceVolume(additionalTracks[0], false, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], false, synthVolumeContributionPercentage);
                 break;
             case FunFactor.Neutral:
-                ChangeSourceVolume(additionalTracks[0], false);
-                ChangeSourceVolume(additionalTracks[1], false);
+                ChangeSourceVolume(additionalTracks[0], false, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], false, synthVolumeContributionPercentage);
                 break;
             case FunFactor.Happy:
-                ChangeSourceVolume(additionalTracks[0], true);
-                ChangeSourceVolume(additionalTracks[1], false);
+                ChangeSourceVolume(additionalTracks[0], true, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], false, synthVolumeContributionPercentage);
                 break;
             case FunFactor.Ecstatic:
-                ChangeSourceVolume(additionalTracks[0], true);
-                ChangeSourceVolume(additionalTracks[1], true);
+                ChangeSourceVolume(additionalTracks[0], true, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], true, synthVolumeContributionPercentage);
                 break;
         }
         
@@ -76,20 +79,20 @@ public class InGameAudioMixer : MonoBehaviour {
     public void ApplyFunFactorSettings() {
         switch (FunFactor) {
             case FunFactor.Disappointed:
-                ChangeSourceVolume(additionalTracks[0], false);
-                ChangeSourceVolume(additionalTracks[1], false);
+                ChangeSourceVolume(additionalTracks[0], false, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], false, synthVolumeContributionPercentage);
                 break;
             case FunFactor.Neutral:
-                ChangeSourceVolume(additionalTracks[0], false);
-                ChangeSourceVolume(additionalTracks[1], false);
+                ChangeSourceVolume(additionalTracks[0], false, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], false, synthVolumeContributionPercentage);
                 break;
             case FunFactor.Happy:
-                ChangeSourceVolume(additionalTracks[0], true);
-                ChangeSourceVolume(additionalTracks[1], false);
+                ChangeSourceVolume(additionalTracks[0], true, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], false, synthVolumeContributionPercentage);
                 break;
             case FunFactor.Ecstatic:
-                ChangeSourceVolume(additionalTracks[0], true);
-                ChangeSourceVolume(additionalTracks[1], true);
+                ChangeSourceVolume(additionalTracks[0], true, pneustaVolumeContributionPercentage);
+                ChangeSourceVolume(additionalTracks[1], true, synthVolumeContributionPercentage);
                 break;
         }
     }
@@ -99,7 +102,7 @@ public class InGameAudioMixer : MonoBehaviour {
         _currentFunFactor = factor;
     }
 
-    private void ChangeSourceVolume(AudioSource audioSource, bool fullVolume) {
+    private void ChangeSourceVolume(AudioSource audioSource, bool fullVolume, float maxVolumeContribution = 0.0f) {
         float vol = 0.0f;
         if (_saveManager.HasSavedKey(SaveKeywords.MasterVolume))
         {
@@ -107,14 +110,24 @@ public class InGameAudioMixer : MonoBehaviour {
             catch (InvalidCastException) {
                 double castVol = (double)_saveManager.GetData(SaveKeywords.MasterVolume);
                 vol = (float)castVol;
-            }     
+            }
             _currentFullVolume =  vol;
         }
         else
         {
             _currentFullVolume = 1.0f;
         }
-        float targetVolume = fullVolume ? _currentFullVolume : 0;
+
+        float targetVolume = 0.0f;
+        
+        if (maxVolumeContribution != 0.0f) {
+            targetVolume = fullVolume ? 1 - (maxVolumeContribution / _currentFullVolume) : 0;
+            Debug.Log($"TARGET VOLUME : {targetVolume}");
+        }
+        else {
+            targetVolume = fullVolume ? _currentFullVolume : 0;
+        }
+        
         float originalVolume = audioSource.volume;
         DOVirtual.Float(originalVolume, targetVolume, transitionTimeStep, (x) => {
             audioSource.volume = x;
