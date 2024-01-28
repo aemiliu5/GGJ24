@@ -19,7 +19,7 @@ public class King : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         BreathInTween();
-        transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        transform.localScale = new Vector3(0.55f, 0.55f, 1f);
     }
 
     private void BreathInTween()
