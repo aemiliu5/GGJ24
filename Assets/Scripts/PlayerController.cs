@@ -151,15 +151,24 @@ public class PlayerController : MonoBehaviour {
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        ballInTrigger = true;
-        currentBall = col.gameObject.GetComponent<Ball>();
-        
-        if (_holdingBall) return;
-        if (currentBall.ballType == BallType.Holdable)
-            holdingBallObject = col.gameObject.GetComponent<Ball>();
+        if (col.GetComponent<Ball>()) {
+            ballInTrigger = true;
+            currentBall = col.gameObject.GetComponent<Ball>();
+
+            if (_holdingBall) return;
+            if (currentBall.ballType == BallType.Holdable)
+                holdingBallObject = col.gameObject.GetComponent<Ball>();
+        }
+        else {
+            Debug.Log("HIT KNIFE");
+            KniveThrower.instance.DamagePlayer();
+            col.enabled = false;
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D col) {
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (!col.GetComponent<Ball>()) return;
         ballInTrigger = false;
         if(!_holdingBall)
             currentBall = null;

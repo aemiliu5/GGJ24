@@ -3,6 +3,12 @@ using UnityEngine;
 using DG.Tweening;
 
 public class KniveThrower : MonoBehaviour {
+    public static KniveThrower instance;
+
+    private void Awake() {
+        instance = this;
+    }
+
     public bool ShouldStartKnifeThrower { get; set; }
     [SerializeField] private Transform playerTransform;
     [SerializeField] private bool testing;
@@ -30,7 +36,7 @@ public class KniveThrower : MonoBehaviour {
 
     private void Update() {
 
-        if (ShouldStartKnifeThrower) {
+        if (ShouldStartKnifeThrower || testing) {
             _currentKnifeOccuranceTime += Time.deltaTime;
         
             if (_currentKnifeOccuranceTime >= knifeThrowingOccuranceTime) {
@@ -38,7 +44,7 @@ public class KniveThrower : MonoBehaviour {
             }
         
             //Throw knife
-            if (_knifeHit > Time.time) {
+            if (Time.time > _knifeHit) {
                 ThrowKnive();
                 _knifeHit = Time.time + knifeFireRate;
             }   
@@ -47,7 +53,7 @@ public class KniveThrower : MonoBehaviour {
         if (currentKnive == null) return;
 
         //Reset knife
-        if (currentKnive.transform.position.y < -8f) {
+        if (currentKnive.transform.position.y < -20f) {
             letItFall = false;
             knives.Enqueue(currentKnive);
             currentKnive.SetActive(false);
@@ -58,12 +64,15 @@ public class KniveThrower : MonoBehaviour {
         else {
             if (_knifeShouldFollow) {
                 Vector2 pos = new Vector2(playerTransform.position.x, kniveParent.transform.position.y);
-                currentKnive.transform.position =
-                    Vector2.Lerp(currentKnive.transform.position, pos, 10 * Time.deltaTime);
+                currentKnive.transform.position = Vector2.Lerp(currentKnive.transform.position, pos, 10 * Time.deltaTime);
             }
 
             if (letItFall) {
-                currentKnive.transform.Translate(Vector3.up * (Time.deltaTime * speed));
+                Debug.Log("SHOULD BE FALLING");
+                var knifePosition = currentKnive.transform.position;
+                Vector2 pos = new Vector2(knifePosition.x,  knifePosition.y);
+                pos.y -= speed * Time.deltaTime;
+                currentKnive.transform.position = pos;
             }
         }
     }
@@ -71,6 +80,12 @@ public class KniveThrower : MonoBehaviour {
     private void ResetKnifeThrower() {
         ShouldStartKnifeThrower = false;
         _currentKnifeOccuranceTime = 0.0f;
+    }
+
+    public void DamagePlayer() {
+        //Lose all combos & lower mood
+        GameManager.instance.LoseCombo();
+        GameManager.instance.LowerMood();
     }
     
     public async void ThrowKnive() {
@@ -80,6 +95,7 @@ public class KniveThrower : MonoBehaviour {
         _knifeShouldFollow = true;
         knive.GetComponent<SpriteRenderer>().DOFade(1, 2f);
         await System.Threading.Tasks.Task.Delay(4000);
+        knive.GetComponent<Collider2D>().enabled = true;
         letItFall = true;
         _knifeShouldFollow = false;
     }
