@@ -28,7 +28,7 @@ public class Score : MonoBehaviour
     void Display() {
         DOVirtual.Int(prescore, score, 1f, (x) => {
             prescore = x;
-            text.text = "SCORE \n" + prescore.ToString("00000000");
+            text.text = prescore.ToString("00000000");
         }).OnComplete(()=> { Display(); });
     }
 }

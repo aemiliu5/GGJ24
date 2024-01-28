@@ -24,8 +24,9 @@ public class GameManager : MonoBehaviour
     public Score scoretext;
     public int scoreMultiplier;
 
-    public TextMeshProUGUI funText;
+    public TextMeshProUGUI comboText;
     public TextMeshProUGUI startText;
+    public TextMeshProUGUI moodText;
 
     public KniveThrower kt;
 
@@ -74,9 +75,9 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
             startText.enabled = false;
 
-            ballSpawner.timeBetween = (scoretext.score * -0.0000012f) + 2.2f;
+            ballSpawner.timeBetween = (scoretext.score * -0.000012f) + 2.2f;
 
-            if (scoretext.score > 1000)
+            if (scoretext.score > 10000)
             {
                 kt.ShouldStartKnifeThrower = true;
             }
@@ -89,7 +90,24 @@ public class GameManager : MonoBehaviour
 
         ManageCombo();
 
-        funText.text = totalCombo.ToString();
+        if (funFactor >= 3)
+        {
+            moodText.text = "OverEX";
+        }
+        else if (funFactor == 2)
+        {
+            moodText.text = "Happy";
+        }
+        else if (funFactor == 1)
+        {
+            moodText.text = "Neutral";
+        }
+        else
+        {
+            moodText.text = "Bored";
+        }
+
+        comboText.text = totalCombo.ToString();
 
         if (!_curtainsMoved) return;
         
@@ -127,7 +145,7 @@ public class GameManager : MonoBehaviour
     
     public void ManageCombo()
     {
-        if (funFactorCombo > 10)
+        if (funFactorCombo > 20)
         {
             if (funFactor > 4)
                 return;

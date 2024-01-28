@@ -46,14 +46,13 @@ public class Ball : MonoBehaviour {
         (Transform = transform).rotation = Quaternion.Euler(Vector3.zero);
         Transform.localScale = Vector3.one * 0.33f;
         sr.sprite = normalSprite;
-        DetermineBallType();
-        
+
         ballOutline.SetActive(false);
         chosenBallState = false;
         rb.isKinematic = false;
         _activateRicochet = false;
         
-
+        DetermineBallType();
         ApplyBallForce();
         StartCoroutine(EnableCollider());
     }
@@ -91,10 +90,10 @@ public class Ball : MonoBehaviour {
         Vector3 force = new Vector3(0, ballForceHeight, 0);
         rb.AddRelativeForce(force, ForceMode2D.Impulse);
 
-        if(transform.position.x < -8f)
-            transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(2f / 2, 5f / 2));
-        else if (transform.position.x > 8f)
-            transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-5f / 2, -2f / 2));
+        if(transform.localPosition.x < -8f)
+            transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 5f));
+        else if (transform.localPosition.x > 8f)
+            transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-5f, 0f));
         else
             transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(-5f / 2, 5f / 2));
     }
@@ -117,6 +116,7 @@ public class Ball : MonoBehaviour {
             case BallType.ManualRicochet:
                 transform.localScale = Vector3.one;
                 ballPoints = points * 2;
+                sr.color = Color.white;
                 sr.sprite = pinAsset;
                 break;
             case BallType.Holdable:
@@ -124,6 +124,7 @@ public class Ball : MonoBehaviour {
                 HoldableState = HoldableBallState.Neutral;
                 sr.sprite = holdableSprite;
                 transform.localScale += Vector3.one * 1.25f;
+                sr.color = Color.white;
                 ballPoints = points;
                 //when you put the ball on your head or feet points go +1
                 break;
