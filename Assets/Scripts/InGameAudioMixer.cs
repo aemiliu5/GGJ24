@@ -27,7 +27,7 @@ public class InGameAudioMixer : MonoBehaviour {
     private void Start() {
         _saveManager = SaveManager.instance;
         Initialize();
-        FunFactor = FunFactor.Happy;
+        FunFactor = FunFactor.Disappointed;
     }
 
     private void Update() {
@@ -71,6 +71,27 @@ public class InGameAudioMixer : MonoBehaviour {
         
         //Debug.Log(FunFactor);
         StartCoroutine(WaitAndSet(FunFactor));
+    }
+
+    public void ApplyFunFactorSettings() {
+        switch (FunFactor) {
+            case FunFactor.Disappointed:
+                ChangeSourceVolume(additionalTracks[0], false);
+                ChangeSourceVolume(additionalTracks[1], false);
+                break;
+            case FunFactor.Neutral:
+                ChangeSourceVolume(additionalTracks[0], false);
+                ChangeSourceVolume(additionalTracks[1], false);
+                break;
+            case FunFactor.Happy:
+                ChangeSourceVolume(additionalTracks[0], true);
+                ChangeSourceVolume(additionalTracks[1], false);
+                break;
+            case FunFactor.Ecstatic:
+                ChangeSourceVolume(additionalTracks[0], true);
+                ChangeSourceVolume(additionalTracks[1], true);
+                break;
+        }
     }
 
     private IEnumerator WaitAndSet(FunFactor factor) {

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform leftCurtain;
     [SerializeField] private Transform rightCurtainPosition;
     [SerializeField] private Transform leftCurtainPosition;
+    private bool _curtainsMoved;
     
     private IEnumerator Start() {
         instance = this;
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     private void OpenCurtains() {
         rightCurtain.DOMove(rightCurtainPosition.position, 2.0f);
-        leftCurtain.DOMove(leftCurtainPosition.position, 2.0f);
+        leftCurtain.DOMove(leftCurtainPosition.position, 2.0f).OnComplete(() => _curtainsMoved = true);
     }
 
     public void ReturnToMainMenu() {
@@ -75,9 +76,12 @@ public class GameManager : MonoBehaviour
 
         funText.text = totalCombo.ToString();
 
+        if (!_curtainsMoved) return;
+        
         if (!hasStarted) {
             if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
                 _audioMixer.EnableMusic();
+                ApplyAudioSettings();
                 ballSpawner.timeSinceLastSpawn = 1.6875f;
                 ballSpawner.enabled = true;
                 hasStarted = true;
@@ -85,6 +89,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ApplyAudioSettings() {
+        if (SaveManager.instance.HasSavedKey(SaveKeywords.MasterVolume)) {
+            float vol = 0.0f;
+            try { vol = (float)SaveManager.instance.GetData(SaveKeywords.MasterVolume); }
+            catch (InvalidCastException) {
+                double castVol = (double)SaveManager.instance.GetData(SaveKeywords.MasterVolume);
+                vol = (float)castVol;
+            }
+
+            AudioSource[] audioSources = FindObjectsOfType<AudioSource>();
+            foreach (var source in audioSources) {
+                source.volume = vol;
+            }
+            
+            //Do that to apply the correct effects
+            _audioMixer.ApplyFunFactorSettings();
+        }
+    }
+    
     public void ManageCombo()
     {
         if (funFactorCombo > 10)
