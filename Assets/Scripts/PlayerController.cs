@@ -131,6 +131,7 @@ public class PlayerController : MonoBehaviour {
         _currentHoldTime = 0.0f;
         ballInTrigger = false;
         _holdingBall = false;
+        holdingBallObject = null;
         _yPos = -5.5f;
     }
 
@@ -180,7 +181,7 @@ public class PlayerController : MonoBehaviour {
 
     private Vector2 GetInput() {
         return new Vector2() {
-            x = currentBall != null && currentBall.HoldableState == Ball.HoldableBallState.Feet ? Input.GetAxis("Horizontal") : Input.GetAxisRaw("Horizontal")
+            x = holdingBallObject != null && holdingBallObject.HoldableState == Ball.HoldableBallState.Feet ? Input.GetAxis("Horizontal") : Input.GetAxisRaw("Horizontal")
         };
     }
 

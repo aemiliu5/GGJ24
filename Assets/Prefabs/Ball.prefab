@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4845578413776974413
 Transform:
   m_ObjectHideFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 7692035939132611137}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9076856552159773276
 MonoBehaviour:
@@ -48,10 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8e796e42364b24bbf510e9a7e5e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: bab152ec0d18ca9419f9134080e9bf1f, type: 3}
   ballForceHeight: 14.5
   ballType: 0
+  holdableSprite: {fileID: 21300000, guid: f23b670a36aaa4546af44be450e11f17, type: 3}
   chosenBallState: 0
   ballOutline: {fileID: 7579391211838094236}
+  pinAsset: {fileID: 21300000, guid: 7ed91071e2a6e9647af154ab0ab7b4db, type: 3}
   Initialized: 0
 --- !u!212 &108410837290044091
 SpriteRenderer:
@@ -94,8 +97,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f23b670a36aaa4546af44be450e11f17, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -239,7 +242,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 6557f566b1acddd48aa15c7a64430faa, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0

@@ -4,14 +4,17 @@ using DG.Tweening;
 using UnityEngine;
 public class Ball : MonoBehaviour {
     public enum HoldableBallState { Neutral, Overhead, Feet }
+    [SerializeField] private Sprite normalSprite;
     public float ballForceHeight;
     public BallType ballType;
     //------ Holdable ball configs ----------------------//
     public HoldableBallState HoldableState { get; set; }
+    [SerializeField] private Sprite holdableSprite;
     public bool chosenBallState; 
     //--------------------------------------------------//
     //------ Ricochet ball configs ----------------------//
     [SerializeField] private GameObject ballOutline;
+    [SerializeField] private Sprite pinAsset;
     private bool _activateRicochet;
     //--------------------------------------------------//
 
@@ -36,6 +39,10 @@ public class Ball : MonoBehaviour {
         }
 
         _originalOutlineScale = ballOutline.transform.localScale;
+        Transform Transform;
+        (Transform = transform).rotation = Quaternion.Euler(Vector3.zero);
+        Transform.localScale = Vector3.one * 0.33f;
+        sr.sprite = normalSprite;
         
         ballOutline.SetActive(false);
         chosenBallState = false;
@@ -51,6 +58,7 @@ public class Ball : MonoBehaviour {
         if (transform.position.y < -8f) { DespawnBall(); }
         
         if (ballType == BallType.ManualRicochet) {
+            transform.Rotate(Vector3.forward, 359.0f * Time.deltaTime);
             if (transform.position.y > 4) {
                 ballOutline.SetActive(true);
                 _activateRicochet = true;
@@ -93,14 +101,15 @@ public class Ball : MonoBehaviour {
                 ballPoints = points;
                 break;
             case BallType.ManualRicochet:
-                sr.color = Color.yellow;
+                transform.localScale = Vector3.one;
                 ballPoints = points * 2;
+                sr.sprite = pinAsset;
                 break;
             case BallType.Holdable:
                 //Assign the default holdable ball state
                 HoldableState = HoldableBallState.Neutral;
-                sr.color = new Color(1f, 0.7f, 0f); // orange
-                transform.localScale = Vector3.one * 1.25f;
+                sr.sprite = holdableSprite;
+                transform.localScale += Vector3.one * 1.25f;
                 ballPoints = points;
                 //when you put the ball on your head or feet points go +1
                 break;
