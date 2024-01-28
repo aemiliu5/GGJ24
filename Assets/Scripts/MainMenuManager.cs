@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -15,6 +16,11 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private float sceneTransitionTime;
 
     [SerializeField] private MainMenuThemeHandler mainAudioSource;
+
+    private void Start() {
+        FindObjectOfType<MainMenuThemeHandler>().FadeAudioSource(false);
+    }
+
     public void LoadMainScene() {
         rightCurtain.DOMove(rightCurtainPosition.position, 2.0f);
         leftCurtain.DOMove(leftCurtainPosition.position, 2.0f).OnComplete(delegate { StartCoroutine(WaitAndLoadScene()); });

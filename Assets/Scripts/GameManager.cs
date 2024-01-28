@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         _audioMixer = InGameAudioMixer.instance;
         mainCam = Camera.main;
+        SoundEffectsManager.instance.AddButtonClickOnButtons();
         yield return new WaitForSeconds(1.0f);
         OpenCurtains();
     }
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         if (!hasStarted) {
             if (Input.GetKeyDown(KeyCode.Space) && player.enabled) {
                 _audioMixer.EnableMusic();
+                FindObjectOfType<MainMenuThemeHandler>().FadeAudioSource(true);
                 ApplyAudioSettings();
                 ballSpawner.timeSinceLastSpawn = 1.6875f;
                 ballSpawner.enabled = true;

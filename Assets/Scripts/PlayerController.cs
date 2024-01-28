@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour {
     public PlayerData playerData;
     public Ball currentBall;
     [FormerlySerializedAs("holdingBall")] public Ball holdingBallObject;
+    [Header("Ball Audio Clips")]
+    [SerializeField] private AudioClip spinningHoldingBallClip;
+    [SerializeField] private AudioClip hitAutoRicochetBallClip;
+    [SerializeField] private AudioClip hitManualRicochetBallClip;
+    
     public bool ballInTrigger;
 
     [SerializeField] private Transform triggerPoint;
@@ -45,8 +50,10 @@ public class PlayerController : MonoBehaviour {
         {
             case BallType.AutoRicochet:
                 HittingBall();
+                SoundEffectsManager.instance.PlayOneShot(hitAutoRicochetBallClip);
                 break;
             case BallType.ManualRicochet:
+                SoundEffectsManager.instance.PlayOneShot(hitManualRicochetBallClip);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     HittingBall();
@@ -77,6 +84,7 @@ public class PlayerController : MonoBehaviour {
         else {
             if (Input.GetKey(KeyCode.Space)) {
                 if (!holdingBallObject.chosenBallState) {
+                    SoundEffectsManager.instance.PlayAudioSourceClip(spinningHoldingBallClip, true);
                     if (Input.GetKeyDown(KeyCode.W)) {
                         holdingBallObject.HoldableState = Ball.HoldableBallState.Overhead;
                         _holdableBallHolder = overheadBallPlace;
@@ -128,6 +136,7 @@ public class PlayerController : MonoBehaviour {
 
     private void ResetHoldableState() {
         holdingBallObject.FadeBall();
+        SoundEffectsManager.instance.StopAudioSource();
         _currentHoldTime = 0.0f;
         ballInTrigger = false;
         _holdingBall = false;
