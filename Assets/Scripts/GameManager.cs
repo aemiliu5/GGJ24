@@ -112,6 +112,8 @@ public class GameManager : MonoBehaviour
         mainCam.transform.DOShakePosition(0.1f, new Vector3(0.25f, 0, 0)).OnComplete(() => mainCam.transform.position = new (0,0,-10));
     }
 
+    public void LowerMood() { funFactor--; }
+    
     public void Lose() {
         player.StatsToPassToPlayerData(funFactor, scoretext.score);
         player.enabled = false;
