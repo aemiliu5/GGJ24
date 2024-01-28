@@ -1127,12 +1127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0525431beca56419cf2a8fb641cd51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ecstaticSprite: {fileID: 21300000, guid: c547e83edc7db4945a2f58f27b108eb6, type: 3}
-  happySprite: {fileID: 21300000, guid: bee9d50aaeb402b48bb5f861eababde5, type: 3}
-  neutralSprite: {fileID: 21300000, guid: 09a8f6aa660cf2847b1888b7eb8e756e, type: 3}
-  disappointedSprite: {fileID: 21300000, guid: 3309b2e34704ef442b242f078ef1843a, type: 3}
+  ecstaticSpriteLeft: {fileID: 21300000, guid: 082ab0bbcbb71db4da46ab73f897e969, type: 3}
+  ecstaticSpriteRight: {fileID: 21300000, guid: 82f9f097672d87c4b9065c7d26365651, type: 3}
+  happySpriteLeft: {fileID: 21300000, guid: a437314fafbeeff4b97ab9a4fffff5e2, type: 3}
+  happySpriteRight: {fileID: 21300000, guid: 0a5c8d3d08e635b44a15e89955f80104, type: 3}
+  neutralSprite: {fileID: 21300000, guid: c96c4200dcecc934c8fddbced4fa45a8, type: 3}
+  disappointedSprite: {fileID: 21300000, guid: 626211aeb7322b441808807c160d82df, type: 3}
   breathingAmount: 0.5
   breathingDuration: 0
+  spriteTimer: 0
+  spriteTimerEnd: 0.5
 --- !u!212 &307733461
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2454,7 +2458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502136633}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.49, z: 0}
+  m_LocalPosition: {x: 0, y: -1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7391,7 +7395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569437667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.88, z: 0}
+  m_LocalPosition: {x: 0, y: 0.789, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8394,7 +8398,6 @@ GameObject:
   - component: {fileID: 1789847570}
   - component: {fileID: 1789847569}
   - component: {fileID: 1789847568}
-  - component: {fileID: 1789847567}
   m_Layer: 0
   m_Name: Static Sprite (1)
   m_TagString: Untagged
@@ -8402,33 +8405,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &1789847567
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789847566}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1789847568
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8882,7 +8858,6 @@ GameObject:
   - component: {fileID: 1870723927}
   - component: {fileID: 1870723926}
   - component: {fileID: 1870723925}
-  - component: {fileID: 1870723924}
   m_Layer: 0
   m_Name: Static Sprite
   m_TagString: Untagged
@@ -8890,33 +8865,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &1870723924
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870723923}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &1870723925
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10123,6 +10071,18 @@ MonoBehaviour:
   currentBall: {fileID: 0}
   holdingBallObject: {fileID: 0}
   ballInTrigger: 0
+  animationTimer: 0
+  animationTimerEnd: 0.333
+  playingNeutralAnim: 0
+  juggleNeutralSprite1: {fileID: 21300000, guid: c29adf37cb1db264d89467912c7a1127, type: 3}
+  juggleNeutralSprite2: {fileID: 21300000, guid: 0c66d0739bc1f3040a83bc8ad4881416, type: 3}
+  juggleNeutralSprite3: {fileID: 21300000, guid: 21d5789cb5eca964481f7a7a421e2c75, type: 3}
+  juggleHolding: {fileID: 21300000, guid: 736a4b2e5c20d3e42a71af8104312432, type: 3}
+  juggleOverhead: {fileID: 21300000, guid: 6e093f7eba847d844876709423c69820, type: 3}
+  juggleUnderfeet1: {fileID: 21300000, guid: 487730971cce4224cbd259c405dfb48a, type: 3}
+  juggleUnderfeet2: {fileID: 21300000, guid: b5f3b17e76b55b444902718997e0a0e1, type: 3}
+  juggleUnderfeet3: {fileID: 21300000, guid: 5a26a2d31c41c644bbb73063cb0fb690, type: 3}
+  juggleUnderfeet4: {fileID: 21300000, guid: 0352d3efafb65bd4d88d871f19d7d016, type: 3}
   triggerPoint: {fileID: 1921156995}
   handBallPlace: {fileID: 163656801}
   overheadBallPlace: {fileID: 1569437668}

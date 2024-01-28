@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class Ball : MonoBehaviour {
     public enum HoldableBallState { Neutral, Overhead, Feet }
     [SerializeField] private Sprite normalSprite;
@@ -24,6 +26,7 @@ public class Ball : MonoBehaviour {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private BallSpawner spawner;
+    public bool shouldRotate;
     private static Transform PlayerCenterPoint => GameObject.Find("Player").GetComponent<PlayerController>().CenterPoint;
 
     private Vector3 _originalOutlineScale;
@@ -55,11 +58,14 @@ public class Ball : MonoBehaviour {
     }
 
     private void Update() {
-        if (transform.position.y < -8f) { DespawnBall(); }
+        if (transform.position.y < -9f) { DespawnBall(); }
         
         if (ballType == BallType.ManualRicochet) {
-            transform.Rotate(Vector3.forward, 359.0f * Time.deltaTime);
-            if (transform.position.y > 4) {
+            if(shouldRotate)
+                transform.Rotate(Vector3.forward, 359.0f * Time.deltaTime);
+            if (transform.position.y > 4)
+            {
+                shouldRotate = true;
                 ballOutline.SetActive(true);
                 _activateRicochet = true;
             }
@@ -84,7 +90,7 @@ public class Ball : MonoBehaviour {
     {
         Vector3 force = new Vector3(0, ballForceHeight, 0);
         rb.AddRelativeForce(force, ForceMode2D.Impulse);
-        
+
         if(transform.position.x < -8f)
             transform.localRotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(2f / 2, 5f / 2));
         else if (transform.position.x > 8f)
@@ -100,10 +106,12 @@ public class Ball : MonoBehaviour {
     
     private void DetermineBallType()
     {
+        Color[] colors = new[] { Color.red, Color.green, Color.blue, Color.yellow };
+        
         switch (ballType)
         {
             case BallType.AutoRicochet:
-                sr.color = Color.blue;
+                sr.color = colors[Random.Range(0, colors.Length)];
                 ballPoints = points;
                 break;
             case BallType.ManualRicochet:

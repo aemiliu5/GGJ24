@@ -69,7 +69,7 @@ public class King : MonoBehaviour
                 breathingDuration = 1f;
                 break;
             
-            case 3:
+            case >3:
                 if (spriteTimer > spriteTimerEnd)
                 {
                     if (sr.sprite == ecstaticSpriteLeft)
