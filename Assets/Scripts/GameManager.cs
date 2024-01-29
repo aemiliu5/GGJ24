@@ -44,7 +44,12 @@ public class GameManager : MonoBehaviour
     
     private bool _curtainsMoved;
     private bool _lost;
-    
+
+    private void Awake()
+    {
+        Screen.SetResolution(1440,1080, FullScreenMode.Windowed);
+    }
+
     private IEnumerator Start() {
         instance = this;
         kt = FindObjectOfType<KniveThrower>();

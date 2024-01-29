@@ -21,6 +21,8 @@ public class MainMenuManager : MonoBehaviour {
         MainMenuThemeHandler mainMenuThemeHandler = FindObjectOfType<MainMenuThemeHandler>();
         mainMenuThemeHandler.ChangeMainMenuAudio();
         mainMenuThemeHandler.FadeAudioSource(false);
+        
+        Screen.SetResolution(1440,1080, FullScreenMode.Windowed);
     }
 
     public void LoadMainScene() {

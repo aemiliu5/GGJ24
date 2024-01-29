@@ -20,7 +20,6 @@ public class OptionsMenuHandler : MonoBehaviour {
     private void Start() {
         _saveManager = SaveManager.instance;
         _audioSources = FindObjectsOfType<AudioSource>();
-        InitializeResolutions();
         LoadOptions();
         gameObject.SetActive(false);
     }
@@ -35,19 +34,6 @@ public class OptionsMenuHandler : MonoBehaviour {
             }
             SetVolume(vol);
             volumeSlider.value = vol;
-        }
-
-        if (_saveManager.HasSavedKey(SaveKeywords.ResolutionIndexKey)) {
-            int resIndex = 0;
-            try {
-               resIndex = ((Int32)_saveManager.GetData(SaveKeywords.ResolutionIndexKey));
-            }
-            catch (InvalidCastException ) {
-                Int64 cast = Convert.ToInt64(_saveManager.GetData(SaveKeywords.ResolutionIndexKey));
-                resIndex = (int)cast;
-            }
-            SetCurrentRes(resIndex);
-            dropdown.value = resIndex;
         }
         if (_saveManager.HasSavedKey(SaveKeywords.IsFullScreenKey)) {
             bool fullScreen = (bool)_saveManager.GetData(SaveKeywords.IsFullScreenKey);
