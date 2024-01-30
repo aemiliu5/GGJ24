@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -25,9 +26,12 @@ public class KniveThrower : MonoBehaviour {
     private float _currentKnifeOccuranceTime;
     private float _currentXPos;
     private GameManager _gameManager;
+    public AudioClip knifeSound;
+    private SpriteRenderer playerSprite;
 
     private void Start() {
         _gameManager = GameManager.instance;
+        playerSprite = FindObjectOfType<PlayerController>().GetComponent<SpriteRenderer>();
         
         for (int i = 0; i < kniveParent.transform.childCount; i++) {
             knives.Enqueue(kniveParent.transform.GetChild(i).gameObject);
@@ -45,7 +49,7 @@ public class KniveThrower : MonoBehaviour {
         
             //Throw knife
             if (Time.time > _knifeHit) {
-                ThrowKnive();
+               StartCoroutine(ThrowKnive());
                 _knifeHit = Time.time + knifeFireRate;
             }   
         }
@@ -86,15 +90,17 @@ public class KniveThrower : MonoBehaviour {
         //Lose all combos & lower mood
         GameManager.instance.LoseCombo();
         GameManager.instance.LowerMood();
+        playerSprite.DOColor(Color.red, 0.05f).OnComplete(() => playerSprite.DOColor(Color.white, 0.05f));
+        SoundEffectsManager.instance.PlayOneShot(knifeSound);
     }
     
-    public async void ThrowKnive() {
+    public IEnumerator ThrowKnive() {
         GameObject knive = knives.Dequeue();
         knive.SetActive(true);
         currentKnive = knive;
         _knifeShouldFollow = true;
         knive.GetComponent<SpriteRenderer>().DOFade(1, 2f);
-        await System.Threading.Tasks.Task.Delay(4000);
+        yield return new WaitForSeconds(4f);
         knive.GetComponent<Collider2D>().enabled = true;
         letItFall = true;
         _knifeShouldFollow = false;

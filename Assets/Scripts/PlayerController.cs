@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour {
                 SoundEffectsManager.instance.PlayOneShot(hitAutoRicochetBallClip);
                 break;
             case BallType.ManualRicochet:
-                if (Input.GetKeyDown(KeyCode.Space)) {
+                if (Input.GetKeyDown(KeyCode.J)) {
                     HittingBall();
                     SoundEffectsManager.instance.PlayOneShot(hitManualRicochetBallClip);
                     currentBall.ResetRicochet();

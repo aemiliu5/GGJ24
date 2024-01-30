@@ -22,7 +22,9 @@ public class MainMenuManager : MonoBehaviour {
         mainMenuThemeHandler.ChangeMainMenuAudio();
         mainMenuThemeHandler.FadeAudioSource(false);
         
+#if !UNITY_WEBGL
         Screen.SetResolution(1440,1080, FullScreenMode.Windowed);
+#endif
     }
 
     public void LoadMainScene() {

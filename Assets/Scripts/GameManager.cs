@@ -47,7 +47,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        #if !UNITY_WEBGL
         Screen.SetResolution(1440,1080, FullScreenMode.Windowed);
+        #endif
     }
 
     private IEnumerator Start() {
@@ -94,23 +96,6 @@ public class GameManager : MonoBehaviour
         }
 
         ManageCombo();
-
-        if (funFactor >= 3)
-        {
-            moodText.text = "OverEX";
-        }
-        else if (funFactor == 2)
-        {
-            moodText.text = "Happy";
-        }
-        else if (funFactor == 1)
-        {
-            moodText.text = "Neutral";
-        }
-        else
-        {
-            moodText.text = "Bored";
-        }
 
         comboText.text = totalCombo.ToString();
 

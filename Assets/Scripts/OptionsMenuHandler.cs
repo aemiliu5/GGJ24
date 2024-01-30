@@ -66,9 +66,11 @@ public class OptionsMenuHandler : MonoBehaviour {
     }
 
     public void SetCurrentRes(int value) {
+        #if !UNITY_WEBGL
         Resolution res = _filteredResolutions[value];
         Screen.SetResolution(res.width, res.height, true);
         _saveManager.SaveData(SaveKeywords.ResolutionIndexKey, value);
+        #endif
     }
 
     public void SetFullScreen(bool isFullScreen) {

@@ -57,7 +57,7 @@ public class King : MonoBehaviour
                 case 2:
                     SoundEffectsManager.instance.PlayOneShot(happyAudioClip);
                     break;
-                case > 3:
+                case >= 3:
                     SoundEffectsManager.instance.PlayOneShot(ecstaticAudioClip);
                     break;
             }
@@ -70,12 +70,16 @@ public class King : MonoBehaviour
                 sr.sprite = disappointedSprite;
                 breathingAmount = 0.52f;
                 breathingDuration = 2f;
+                GameManager.instance.moodText.text = "Bored";
+
                 break;
             
             case 1:
                 sr.sprite = neutralSprite;
                 breathingAmount = 0.53f;
                 breathingDuration = 1.5f;
+                GameManager.instance.moodText.text = "Neutral";
+
                 break;
             
             case 2:
@@ -91,9 +95,10 @@ public class King : MonoBehaviour
                 
                 breathingAmount = 0.54f;
                 breathingDuration = 1f;
+                GameManager.instance.moodText.text = "Happy";
                 break;
             
-            case >3:
+            case >=3:
                 if (spriteTimer > spriteTimerEnd)
                 {
                     if (sr.sprite == ecstaticSpriteLeft)
@@ -106,6 +111,7 @@ public class King : MonoBehaviour
                 
                 breathingAmount = 0.55f;
                 breathingDuration = 0.3f;
+                GameManager.instance.moodText.text = "OverEX";
                 break;
         }
     }
